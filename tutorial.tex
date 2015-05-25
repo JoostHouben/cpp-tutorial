@@ -1,0 +1,128 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amssymb, amsmath}
+\usepackage{fancyhdr}
+\usepackage{footnote}
+\usepackage{hyperref}
+\usepackage[justification=centering]{caption}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{bm}
+\usepackage{siunitx}
+\usepackage[usenames,dvipsnames]{color}
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\setlength{\parindent}{0pt}
+
+\renewcommand{\thesection}		{\arabic{section}}
+\renewcommand{\thesubsection}	{\arabic{subsection}}
+
+\usepackage{listings}
+\lstset{
+    language=C++,
+    tabsize=4,
+    frame=lines,
+    numbers=left,
+    numberstyle=\color{black}\tiny,
+    numbersep=8pt,
+    breaklines=true,
+    showstringspaces=false,
+    basicstyle=\color{black}\footnotesize\ttfamily,
+	identifierstyle=\color{black},
+	keywordstyle=\bfseries\color{blue}\bfseries,
+	commentstyle=\color{OliveGreen},
+	stringstyle =\color{red},
+}
+
+% \code to include a file
+% \icode to create inline code
+\newcommand{\code}{\lstinputlisting}
+\newcommand{\icode}{\lstinline}
+\newcommand{\mono}{\texttt}
+
+\fancyhead[R]{}
+\fancyfoot{}
+%\fancyhead[C]{\today}
+%\fancyfoot[C]{\thepage}
+
+%\fancyhead[L]{Ragnar Groot Koerkamp/Fysicie}
+%\fancyhead[R]{Inleiding programmeren natuurkundigen}
+
+\title{Inleiding programmeren natuurkundigen}
+\author{Ragnar Groot Koerkamp}
+\date{11 juni 2015}
+ 
+\renewcommand*\contentsname{Inhoud}
+ 
+\begin{document}
+ 
+\maketitle
+
+\tableofcontents
+\subsection{Overzicht}
+- Inleidend praatje ook hier?\\
+- Voorbeeld code\\
+\subsection{Visual studio}
+Voor Manon
+\subsection{Basis}
+opmerkingen over
+\begin{itemize}
+		\item 
+			puntkomma
+		\item
+			whitespace
+		\item includes
+		\item std
+		\item main, return value
+\end{itemize}
+\code{code/template.cpp}
+\subsection{Console in- en uitvoer}
+Wanneer je het programma start, zie je steeds een zwart scherm verschijnen. Dat heet de \emph{console} of \emph{terminal}. Daar kunnen we tekst neerzetten of juist van lezen. Het neerzetten van tekst kan met het commando \icode{cout}, oftewel, Console-out. Je kan achter de \icode{cout <<} bijvoorbeeld een string of een getal zetten. Ook is er het speciale commando \icode{endl}, dat voor \emph{endline} staat. Hiermee be\"eindig je dus een regel. Het is handig om te onthouden dat je de tekst 'in de console stopt' en de pijltjes dus richting \icode{cout} staan.
+\code{code/cout.cpp}
+Het is soms ook handig om juist invoer van de gebruiker te lezen. Daarvoor hebben we \icode{cin}, console-in. Hieronder lezen we een getal in, wat we in de variabele (zie het volgende hoofdstuk) \icode{leeftijd} stoppen. De pijltjes staan hier naar rechts, omdat het getal uit de console komt, en in de variabele wordt gestopt.
+\code{code/cin.cpp}
+\subsection{Variabelen}
+Er zijn meerdere soorten variabelen. De belangrijkste zijn getallen en strings. Een getal kan of geheel zijn, of re\"eel. In het eerste geval gebruiken we een \icode{int}, wat staat voor \emph{integer}. Als een getal niet altijd geheel is, hebben we een \icode{double} nodig. Een double kan elke mogelijke waarde aannemen, dus bijvoorbeeld ook $\pi$.\\
+Een \icode{string} is een stuk tekst. In computertaal is dat gewoon een rij van tekens.
+\code{code/vars.cpp}
+\subsection{For}
+Als je een stukje code vaker dan \'e\'en keer wilt uitvoeren, kan je hem natuurlijk een aantal keer onder elkaar kopi\"eren en plakken. Als je echter heel vaak ($\geq 3$ keer) iets wilt doen, is dat niet meer handig. Daarvoor is de \icode{for}-loop.
+Deze herhaalt iets een bepaald aantal keer. Hieronder staat een voorbeeldje.
+\code{code/for.cpp}
+Als je dit intikt en uitvoert, zie je dat er eerst drie keer 'hoera' wordt geschreven, en daarna de getallen van $0$ tot en met $10$. De werking van een \icode{for}-loop is als volgt:\\
+\begin{lstlisting}
+for(initialisatie; conditie; verhoging){
+	code die herhaalt word
+}
+\end{lstlisting}
+In de \icode{initialisatie} wordt meestal een variabele ge\"initialiseerd, zoals hier \icode{int i=0}. In de \icode{conditie} kijken we steeds of we moeten doorgaan met de volgende iteratie, of dat we moeten stoppen met herhalen. Zolang de conditie waar is gaan we door, en als hij niet meer waar is stoppen we met herhalen. Hier gaan we dus alleen maar door wanneer \icode{i} kleiner of gelijk is dan $3$. In de \icode{verhoging} verhogen we de variabele waarover we lopen. Meestal verhogen we hem steeds met $1$ tegelijk maar dat hoeft niet per se.
+
+\subsection{If}
+Tot nu toe lag het altijd precies vast welke code werd uitgevoerd en hoe vaak dat gebeurde. Het is ook mogelijk om iets alleen uit te voeren als aan een bepaalde voorwaarde is voldaan. Daarvoor gebruiken we het \icode{if}-statement. De syntax is
+\begin{lstlisting}
+if(conditie){
+	code wanneer conditie waar (true) is;
+} else {
+	code wanneer conditie niet waar (false) is;
+}
+\end{lstlisting}
+Dit kunnen we bijvoorbeeld gebruiken in het volgende voorbeeld, waarin de uitvoer afhangt van de invoer van de gebruiker.
+\code{code/if.cpp}
+\subsection{While}
+Tot slot hebben we nog de \icode{while}-loop. Deze lijkt een beetje op de \icode{for}-loop, maar is toch anders. Bij een \icode{for}-loop weten we meestal van tevoren al hoe vaak we de code willen herhalen. Als we dat niet precies weten, is een \icode{while}-loop handig. We herhalen de code nu net zo lang tot \icode{conditie} onwaar wordt in
+\begin{lstlisting}
+while(conditie){
+	code die herhaald wordt;
+}
+\end{lstlisting}
+In de code hieronder zie je een voorbeeld. We beginnen hier met $n=0$, en vervolgens schrijven we steeds $n^2$ op, net zo lang tot $n^2$ groter wordt dan $1000$.
+\code{code/while.cpp}
+
+\subsection{Arrays [optioneel]}
+\code{code/array.cpp}
+\end{document}
+
