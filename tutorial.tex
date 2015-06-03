@@ -57,6 +57,8 @@
 \date{11 juni 2015}
  
 \renewcommand*\contentsname{Inhoud}
+
+\newcommand{\cpp}{\mono{C++}}
  
 \begin{document}
  
@@ -64,21 +66,26 @@
 
 \tableofcontents
 \subsection{Overzicht}
-- Inleidend praatje ook hier?\\
-- Voorbeeld code\\
-\subsection{Visual studio}
+In deze cursus leer je de basis van programmeren in \cpp. We beginnen we bij het opstarten van een project in een tekstverwerker. Daarna gaan we in op de structuur van een programma en wat de regels zijn bij het schrijven ervan. Vervolgens wordt aan de hand van veel voorbeelden en simpele opdrachten de basis van \cpp zelf uitgelegd. We gaan hierbij bijvoorbeeld in op variabelen, \icode{if}-statements en \icode{for}-loops.
+
+Na afloop van deze cursus zou je van onderstaande code moeten kunnen achterhalen wat het doet en hoe het werkt:\footnote{of gewoon meteen hier uitleggen?}
+\code{code/eind.cpp}
+\subsection{Visual studio/ of online?}
 Voor Manon
 \subsection{Basis}
-opmerkingen over
-\begin{itemize}
-		\item 
-			puntkomma
-		\item
-			whitespace
-		\item includes
-		\item std
-		\item main, return value
-\end{itemize}
+We bekijken nu eerst hoe een programma globaal in elkaar zit. Elk programma heeft een \icode{main} functie waar het altijd begint. Vandaag staat alle code in de main functie, dus tussen de accolades die aangeven welke code bij de \icode{main} hoort.
+Bovenaan het programma zie je groene regels commentaar staan die beginnen met \icode{\\}. Deze regels worden altijd overgeslagen bij het uitvoeren. Het is handig om commentaar bij de code te zetten om te verduidelijken wat de code doet. Dat is handig als je ergens later weer naar terug kijkt en dan niet opnieuw hoeft uit te zoeken wat de code nou eigenlijk deed. Commentaar kan ook meer dan een regel omvatting. Dan gebruik je aan het begin \icode{/*} en aan het einde \icode{*}.
+
+Zoals je misschien al is opgevallen eindigt bijna elke regel van het voorbeeld met een puntkomma (\icode{;}). Dit is nodig zodat het programma dat de code uitvoert weet wanneer een nieuw regel met nieuwe code begint. In sommige gevallen zijn geen puntkomma's nodig, zoals voor of na een accolade.
+
+In \cpp mag je overal zo veel witruimte (spaties, tabs, enters) neerzetten als je maar wilt. De enige eis is dan sommige dingen niet direct aan elkaar geschreven morgen worden, en er dus minstens een spatie tussen moet zitten.
+
+
+Verder zie je ook nog \icode{#include <iostream>} staan. \icode{<iostream>} is een pakketje dat we later nodig zullen hebben om tekst te schrijven naar de console (dat zwarte schermpje, zie verderop) en om data in te lezen. Alle functies in dat pakketje behoren tot de \cpp-standaard-library\footnote{beter kan ik het niet maken. Suggesties?}. Om ze toegankelijk te maken moeten we daarom ook \icode{using namespace std;} bovenaan onze code zetten.
+
+
+Het programma eindigt met \icode{return 0;}\footnote{of dit gewoon weglaten?}. Het getal dat achter \icode{return} staat, staat voor een mogelijke error die het programma geeft. 0 betekent dat er geen errors zijn geweest.
+
 \code{code/template.cpp}
 \subsection{Console in- en uitvoer}
 Wanneer je het programma start, zie je steeds een zwart scherm verschijnen. Dat heet de \emph{console} of \emph{terminal}. Daar kunnen we tekst neerzetten of juist van lezen. Het neerzetten van tekst kan met het commando \icode{cout}, oftewel, Console-out. Je kan achter de \icode{cout <<} bijvoorbeeld een string of een getal zetten. Ook is er het speciale commando \icode{endl}, dat voor \emph{endline} staat. Hiermee be\"eindig je dus een regel. Het is handig om te onthouden dat je de tekst 'in de console stopt' en de pijltjes dus richting \icode{cout} staan.
