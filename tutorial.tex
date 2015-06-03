@@ -72,30 +72,59 @@ Na afloop van deze cursus zou je van onderstaande code moeten kunnen achterhalen
 \code{code/eind.cpp}
 \subsection{Visual studio/ of online?}
 Voor Manon
+Hier ook iets over compileren
 \subsection{Basis}
 We bekijken nu eerst hoe een programma globaal in elkaar zit. Elk programma heeft een \icode{main} functie waar het altijd begint. Vandaag staat alle code in de main functie, dus tussen de accolades die aangeven welke code bij de \icode{main} hoort.
-Bovenaan het programma zie je groene regels commentaar staan die beginnen met \icode{\\}. Deze regels worden altijd overgeslagen bij het uitvoeren. Het is handig om commentaar bij de code te zetten om te verduidelijken wat de code doet. Dat is handig als je ergens later weer naar terug kijkt en dan niet opnieuw hoeft uit te zoeken wat de code nou eigenlijk deed. Commentaar kan ook meer dan een regel omvatting. Dan gebruik je aan het begin \icode{/*} en aan het einde \icode{*}.
+Bovenaan het programma zie je groene regels commentaar staan die beginnen met \icode{//}. Deze regels worden altijd overgeslagen bij het uitvoeren. Het commentaar begint pas bij de \icode{//}, dus ervoor kan nog wel code staan. Het is handig om commentaar bij de code te zetten om te verduidelijken wat de code doet. Dat is handig als je ergens later weer naar terug kijkt en dan niet opnieuw hoeft uit te zoeken wat de code nou eigenlijk deed. Commentaar kan ook meer dan een regel omvatting. Dan gebruik je aan het begin \icode{/*} en aan het einde \icode{*/}.
 
-Zoals je misschien al is opgevallen eindigt bijna elke regel van het voorbeeld met een puntkomma (\icode{;}). Dit is nodig zodat het programma dat de code uitvoert weet wanneer een nieuw regel met nieuwe code begint. In sommige gevallen zijn geen puntkomma's nodig, zoals voor of na een accolade.
+\code{code/template.cpp}
 
-In \cpp mag je overal zo veel witruimte (spaties, tabs, enters) neerzetten als je maar wilt. De enige eis is dan sommige dingen niet direct aan elkaar geschreven morgen worden, en er dus minstens een spatie tussen moet zitten.
+Zoals je misschien al is opgevallen eindigt bijna elke regel van het voorbeeld met een puntkomma (\icode{;}). Dit is nodig zodat het programma dat de code uitvoert weet wanneer een nieuwe regel met nieuwe code begint. In sommige gevallen zijn geen puntkomma's nodig, zoals voor of na een accolade.
+
+In \cpp  mag je overal zo veel witruimte (spaties, tabs, enters) neerzetten als je maar wilt. De enige eis is dat sommige dingen niet direct aan elkaar geschreven morgen worden, en er dus minstens een spatie tussen moet zitten.
 
 
 Verder zie je ook nog \icode{#include <iostream>} staan. \icode{<iostream>} is een pakketje dat we later nodig zullen hebben om tekst te schrijven naar de console (dat zwarte schermpje, zie verderop) en om data in te lezen. Alle functies in dat pakketje behoren tot de \cpp-standaard-library\footnote{beter kan ik het niet maken. Suggesties?}. Om ze toegankelijk te maken moeten we daarom ook \icode{using namespace std;} bovenaan onze code zetten.
 
 
-Het programma eindigt met \icode{return 0;}\footnote{of dit gewoon weglaten?}. Het getal dat achter \icode{return} staat, staat voor een mogelijke error die het programma geeft. 0 betekent dat er geen errors zijn geweest.
+Het programma eindigt met \icode{return 0;}\footnote{of dit gewoon weglaten?}. Het getal dat achter \icode{return} staat, staat voor een mogelijke error die het programma geeft. 0 betekent hier dat er geen errors zijn geweest.
+\subsubsection{Opdrachten}
+\begin{enumerate}
+	\item
+		Type de code uit het voorbeeld over, maar laat het commentaar nog even weg. Start nu het programma.\footnote{dat doe je door ... te doen, afhankelijk IDE.} Zorg ervoor dat dat zwarte schermpje niet meteen weer uit beeld verdwijnt, maar daar blijft staan en pas weg gaat als je op een toets drukt.
+		Dat doe je met shift-\mono{F5} in Visual Studio, of ... in IDE.
+	\item
+		Voeg nu ook commentaar toe op de plekken waar dat in het voorbeeld ook is gedaan. Check dat het programma nog steeds werkt.
+	\item
+		Probeer nu ook op binnen \icode{main} je eigen commentaar toe te voegen van beide soorten.
+	\item 
+		Voeg nu een blok code (dus van de soort \icode{/* */}) toe binnen een code regel, dus bijvoorbeeld tussen \icode{int} en \icode{main(){} of tussen \icode{return} en \icode{0;}. Omdat witruimte niet van belang is en het commentaar wordt weggegooid, zou je programma nog steeds moeten werken.
+\end{enumerate}
 
-\code{code/template.cpp}
-\subsection{Console in- en uitvoer}
+\subsection{Console uitvoer}
 Wanneer je het programma start, zie je steeds een zwart scherm verschijnen. Dat heet de \emph{console} of \emph{terminal}. Daar kunnen we tekst neerzetten of juist van lezen. Het neerzetten van tekst kan met het commando \icode{cout}, oftewel, Console-out. Je kan achter de \icode{cout <<} bijvoorbeeld een string of een getal zetten. Ook is er het speciale commando \icode{endl}, dat voor \emph{endline} staat. Hiermee be\"eindig je dus een regel. Het is handig om te onthouden dat je de tekst 'in de console stopt' en de pijltjes dus richting \icode{cout} staan.
 \code{code/cout.cpp}
-Het is soms ook handig om juist invoer van de gebruiker te lezen. Daarvoor hebben we \icode{cin}, console-in. Hieronder lezen we een getal in, wat we in de variabele (zie het volgende hoofdstuk) \icode{leeftijd} stoppen. De pijltjes staan hier naar rechts, omdat het getal uit de console komt, en in de variabele wordt gestopt.
-\code{code/cin.cpp}
+
+\subsubsection{opdrachten}
+\begin{enumerate}
+		\item
+			Schrijf nu alleen de tekst "How are you?" naar de console in plaats van "Mijn leeftijd is", en zorg dat het getal niet meer wordt geschreven door er commentaar van te maken.\footnote{splitsen naar 2 opdrachtjes?}
+		\item
+			In plaats van twee dingen op \'e\'en regel weg te schrijven, kunnen we ook twee regels gebruiken. Verander je code naar de twee regels \icode{cout << "How are you?";} en \icode{cout << endl;}. Je ziet dat er nog steeds het zelfde gebeurt als je het programma uitvoert.
+		\item
+			Zorg nu dat het programma twee keer "How are you?" zegt, op twee regels onder elkaar.
+		\item
+			Kan je er ook voor zorgen dat het op \'e\'en regel komt te staan?
+		\item
+\end{enumerate}
+
 \subsection{Variabelen}
 Er zijn meerdere soorten variabelen. De belangrijkste zijn getallen en strings. Een getal kan of geheel zijn, of re\"eel. In het eerste geval gebruiken we een \icode{int}, wat staat voor \emph{integer}. Als een getal niet altijd geheel is, hebben we een \icode{double} nodig. Een double kan elke mogelijke waarde aannemen, dus bijvoorbeeld ook $\pi$.\\
 Een \icode{string} is een stuk tekst. In computertaal is dat gewoon een rij van tekens.
 \code{code/vars.cpp}
+\subsection{Console invoer}\footnote{Ik heb nu maar uitvoer-variabelen-invoer gedaan, omdat er op die manier geen vooruit-referenties nodig zijn.}
+Het is soms ook handig om juist invoer van de gebruiker te lezen. Daarvoor hebben we \icode{cin}, console-in. Hieronder lezen we een getal in, wat we in de variabele (zie het volgende hoofdstuk) \icode{leeftijd} stoppen. De pijltjes staan hier naar rechts, omdat het getal uit de console komt, en in de variabele wordt gestopt.
+\code{code/cin.cpp}
 \subsection{For}
 Als je een stukje code vaker dan \'e\'en keer wilt uitvoeren, kan je hem natuurlijk een aantal keer onder elkaar kopi\"eren en plakken. Als je echter heel vaak ($\geq 3$ keer) iets wilt doen, is dat niet meer handig. Daarvoor is de \icode{for}-loop.
 Deze herhaalt iets een bepaald aantal keer. Hieronder staat een voorbeeldje.

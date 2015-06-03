@@ -15,5 +15,5 @@ using namespace std;
  * Elk getal ongelijk aan 0 betekent dat er een error is geweest.
  */
 int main(){
-	return 0; // no error
+	return 0; // of deze weglaten?????
 }
