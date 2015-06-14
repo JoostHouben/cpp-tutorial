@@ -1,0 +1,258 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amssymb, amsmath}
+\usepackage{fancyhdr}
+\usepackage{footnote}
+\usepackage{hyperref}
+\usepackage[justification=centering]{caption}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{bm}
+\usepackage{siunitx}
+\usepackage[usenames,dvipsnames]{color}
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\setlength{\parindent}{0pt}
+
+\renewcommand{\thesection}		{\arabic{section}}
+\renewcommand{\thesubsection}	{\arabic{subsection}}
+
+\usepackage{listings}
+\lstset{
+    language=C++,
+    tabsize=4,
+    frame=lines,
+    numbers=left,
+    numberstyle=\color{black}\tiny,
+    numbersep=8pt,
+    breaklines=true,
+    showstringspaces=false,
+    basicstyle=\color{black}\footnotesize\ttfamily,
+	identifierstyle=\color{black},
+	keywordstyle=\bfseries\color{blue}\bfseries,
+	commentstyle=\color{OliveGreen},
+	stringstyle =\color{red},
+}
+
+% \code to include a file
+% \icode to create inline code
+\newcommand{\code}{\lstinputlisting}
+\newcommand{\icode}{\lstinline}
+\newcommand{\mono}{\texttt}
+
+\fancyhead[R]{}
+\fancyfoot{}
+%\fancyhead[C]{\today}
+%\fancyfoot[C]{\thepage}
+
+%\fancyhead[L]{Ragnar Groot Koerkamp/Fysicie}
+%\fancyhead[R]{Inleiding programmeren natuurkundigen}
+
+\title{Inleiding programmeren natuurkundigen}
+\author{Ragnar Groot Koerkamp}
+\date{11 juni 2015}
+ 
+\renewcommand*\contentsname{Inhoud}
+
+\newcommand{\cpp}{\mono{C++}}
+ 
+\begin{document}
+ 
+\maketitle
+
+\tableofcontents
+\subsection{Overzicht}
+In deze cursus leer je de basis van programmeren in \cpp. We beginnen we bij het opstarten van een project in een tekstverwerker. Daarna gaan we in op de structuur van een programma en wat de regels zijn bij het schrijven ervan. Vervolgens wordt aan de hand van veel voorbeelden en simpele opdrachten de basis van \cpp zelf uitgelegd. We gaan hierbij bijvoorbeeld in op variabelen, \icode{if}-statements en \icode{for}-loops.
+
+Na afloop van deze cursus zou je van onderstaande code moeten kunnen achterhalen wat het doet en hoe het werkt:\footnote{of gewoon meteen hier uitleggen?}
+\code{code/eind.cpp}
+\subsection{Visual studio/ of online?}
+Voor Manon
+Hier ook iets over compileren
+\subsection{Basis}
+We bekijken nu eerst hoe een programma globaal in elkaar zit. Elk programma heeft een \icode{main} functie waar het altijd begint. Vandaag staat alle code in de main functie, dus tussen de accolades die aangeven welke code bij de \icode{main} hoort.
+Bovenaan het programma zie je groene regels commentaar staan die beginnen met \icode{//}. Deze regels worden altijd overgeslagen bij het uitvoeren. Het commentaar begint pas bij de \icode{//}, dus ervoor kan nog wel code staan. Het is handig om commentaar bij de code te zetten om te verduidelijken wat de code doet. Dat is handig als je ergens later weer naar terug kijkt en dan niet opnieuw hoeft uit te zoeken wat de code nou eigenlijk deed. Commentaar kan ook meer dan een regel omvatting. Dan gebruik je aan het begin \icode{/*} en aan het einde \icode{*/}.
+
+\code{code/template.cpp}
+
+Zoals je misschien al is opgevallen eindigt bijna elke regel van het voorbeeld met een puntkomma (\icode{;}). Dit is nodig zodat het programma dat de code uitvoert weet wanneer een nieuwe regel met nieuwe code begint. In sommige gevallen zijn geen puntkomma's nodig, zoals voor of na een accolade.
+
+In \cpp  mag je overal zo veel witruimte (spaties, tabs, enters) neerzetten als je maar wilt. De enige eis is dat sommige dingen niet direct aan elkaar geschreven morgen worden, en er dus minstens een spatie tussen moet zitten.
+
+
+Verder zie je ook nog \icode{#include <iostream>} staan. \icode{<iostream>} is een pakketje dat we later nodig zullen hebben om tekst te schrijven naar de console (dat zwarte schermpje, zie verderop) en om data in te lezen. Alle functies in dat pakketje behoren tot de \cpp-standaard-library\footnote{beter kan ik het niet maken. Suggesties?}. Om ze toegankelijk te maken moeten we daarom ook \icode{using namespace std;} bovenaan onze code zetten.
+
+
+Het programma eindigt met \icode{return 0;}\footnote{of dit gewoon weglaten?}. Het getal dat achter \icode{return} staat, staat voor een mogelijke error die het programma geeft. 0 betekent hier dat er geen errors zijn geweest.
+\subsubsection{Opdrachten}
+\begin{enumerate}
+	\item
+		Type de code uit het voorbeeld over, maar laat het commentaar nog even weg. Start nu het programma.\footnote{dat doe je door ... te doen, afhankelijk IDE.} Zorg ervoor dat dat zwarte schermpje niet meteen weer uit beeld verdwijnt, maar daar blijft staan en pas weg gaat als je op een toets drukt.
+		Dat doe je met shift-\mono{F5} in Visual Studio, of ... in IDE.
+	\item
+		Voeg nu ook commentaar toe op de plekken waar dat in het voorbeeld ook is gedaan. Check dat het programma nog steeds werkt.
+	\item
+		Probeer nu ook op binnen \icode{main} je eigen commentaar toe te voegen van beide soorten.
+	\item 
+		Voeg nu een blok code (dus van de soort \icode{/* */}) toe binnen een code regel, dus bijvoorbeeld tussen \icode{int} en \icode{main(){} of tussen \icode{return} en \icode{0;}. Omdat witruimte niet van belang is en het commentaar wordt weggegooid, zou je programma nog steeds moeten werken.
+\end{enumerate}
+
+\subsection{Console uitvoer}
+Wanneer je het programma start, zie je steeds een zwart scherm verschijnen. Dat heet de \emph{console} of \emph{terminal}. Daar kunnen we tekst neerzetten of juist van lezen. Het neerzetten van tekst kan met het commando \icode{cout}, oftewel, Console-out. Je kan achter de \icode{cout <<} bijvoorbeeld een string of een getal zetten. Ook is er het speciale commando \icode{endl}, dat voor \emph{endline} staat. Hiermee be\"eindig je dus een regel. Het is handig om te onthouden dat je de tekst 'in de console stopt' en de pijltjes dus richting \icode{cout} staan. De algemene syntax is dus:\\
+\icode{cout << } \emph{string, cijfer, of nog iets anders} \icode{;}\\
+Het is soms handig om meer dan \'e\'en ding tegelijk te kunnen schrijven. Dat kan met behulp van:
+\icode{cout << } \emph{string, cijfer, of nog iets anders} \icode{ << } \emph{andere string, cijfer, etc} \icode{ << } .. \icode{;}\\
+Als je, zoals in het voorbeeld, direct een \icode{endline} gebruikt, heb je een speciale versie van de tweede, langere, variant gebruikt.
+
+\code{code/cout.cpp}
+
+\subsubsection{opdrachten}
+\begin{enumerate}
+		\item
+			Schrijf nu alleen de tekst "How are you?" naar de console in plaats van "Mijn leeftijd is", en zorg dat het getal niet meer wordt geschreven door er commentaar van te maken.\footnote{splitsen naar 2 opdrachtjes?}
+		\item
+			In plaats van twee dingen op \'e\'en regel weg te schrijven, kunnen we ook twee regels gebruiken. Verander je code naar de twee regels \icode{cout << "How are you?";} en \icode{cout << endl;}. Je ziet dat er nog steeds het zelfde gebeurt als je het programma uitvoert.
+		\item
+			Zorg nu dat het programma twee keer "How are you?" zegt, op twee regels onder elkaar.
+		\item
+			Kan je er ook voor zorgen dat het op \'e\'en regel komt te staan?
+		\item
+			Print nu de lijst getallen van 1 tot en met 5, waarbij elk getal op zijn eigen regel staat.
+		\item
+			We kunnen die getallen ook op \'e\'en regel zetten door steeds \icode{endl} te vervangen door \icode{" "}.
+		\item
+			Zorg er nu voor dat je in je code maar \'e\'en keer het woord \icode{cout} gebruikt.
+			Zoals je ziet kunnen we het uitvoeren van getallen en tekst door elkaar het gebruiken op dezelfde regel.
+\end{enumerate}
+
+\subsection{Variabelen}
+Er zijn meerdere soorten variabelen. De belangrijkste zijn getallen en strings. Een getal kan of geheel zijn, of re\"eel. In het eerste geval gebruiken we een \icode{int}, wat staat voor \emph{integer}. Als een getal niet altijd geheel is, hebben we een \icode{double} nodig. Een double kan elke mogelijke waarde aannemen, dus bijvoorbeeld ook $\pi$.\\
+Een \icode{string} is een stuk tekst. In computertaal is dat gewoon een rij van tekens.
+\code{code/vars.cpp}
+\subsubsection{Opdrachten}
+\begin{enumerate}
+		\item
+\end{enumerate}
+
+
+\subsection{Console invoer}\footnote{Ik heb nu maar uitvoer-variabelen-invoer gedaan, omdat er op die manier geen vooruit-referenties nodig zijn.}
+Het is soms ook handig om juist invoer van de gebruiker te lezen. Daarvoor hebben we \icode{cin}, console-in. Hieronder lezen we een getal in, wat we in de variabele \icode{leeftijd} stoppen. De pijltjes staan hier naar rechts, omdat het getal uit de console komt, en in de variabele wordt gestopt. We kunnen ook naar een string lezen in plaats van naar een getal. De syntax is:\\
+\icode{cin >> } \emph{variabele met het type dat je wilt lezen} \icode{;}
+\code{code/cin.cpp}
+\subsubsection{Opdrachten}
+\begin{enumerate}
+	\item Print op een nieuwe regel ook nog de leeftijd die je volgend jaar bent, door \icode{leeftijd + 1} te gebruiken in plaats van \icode{leeftijd}.
+		\item
+			In plaats van een \icode{int}, kunnen we \icode{leeftijd} ook een \icode{double} maken, zodat hij niet geheel meer hoeft te zijn. Doe dat, en kijk wat er gebeurt als je bijvoorbeeld $1$, $2.3$, $1234.345$ en $-11234$ invult. Vergelijk dit ook met het geval waarin het nog een integer was.
+		\item
+			We kunnen er ook nog een string van maken. Als je de code van de eerste opdracht nog hebt, werkt die hier nog steeds. Wat doet de \icode{+} blijkbaar met tekst als argumenten?
+		\item
+			\footnote{Meer opdrachten nodig? Echt meer kan ik niet bedenken}
+\end{enumerate}
+
+
+\subsection{If}
+Tot nu toe lag het altijd precies vast welke code werd uitgevoerd en hoe vaak dat gebeurde. Het is ook mogelijk om iets alleen uit te voeren als aan een bepaalde voorwaarde is voldaan. Daarvoor gebruiken we het \icode{if}-statement. De syntax is
+\begin{lstlisting}
+if(conditie){
+	//code wanneer conditie waar (true) is;
+} else {
+	//code wanneer conditie niet waar (false) is;
+}
+\end{lstlisting}
+Hierin is \icode{conditie} een expressie die tot een boolean evalueert, en dus waar of niet waar is. Voorbeelden zijn bijvoorbeeld \icode{if(i == 1)} en \icode{if(i < 10)}, waarbij $i$ een integer is.
+
+Soms hoeven we alleen maar iets te doen als de conditie waar is. In dat geval kunnen we ook den syntax
+\begin{lstlisting}
+if(conditie){
+	// code wanneer de conditie waar is;
+}
+\end{lstlisting}
+gebruiken.
+
+In het volgende voorbeeld hangt de uitvoer van het programma af van de invoer van de gebruiker.
+\code{code/if.cpp}
+
+\subsection{Opdrachten}
+\begin{enumerate}
+		\item
+		Kan je er voor zorgen dat de twee gevallen uit het voorbeeld verwisseld worden? Dus dat de \emph{true} case nu \icode{"Je bent nog een kind!"} print en de \emph{false} case juist \icode{"Je bent volwassen!"}.
+		\item
+			Print nu ook nog de string \icode{"Je mag nu autorijden!"} wanneer de leeftijd precies 18 jaar is. Hierbij heb je dus geen \icode{else} nodig.
+		\item
+			Bepaal nu of de leeftijd kleiner is dan 18, tussen de 18 en 65 is, of dat hij minstens 65 is. In het laatste geval moet je \icode{"U bent gepensioneerd!"} schrijven naar de console.
+		\item
+			Voor herhaalde \icode{if}-statements is er de syntax
+\begin{lstlisting}
+if(conditie 1){
+	// code wanneer conditie 1 waar is;
+} else if(conditie 2){
+	// code wanneer conditie 2 waar is;
+} else {
+	// code wanneer geen van beiden waar is.
+}
+\end{lstlisting}
+Gebruik dit nu voor de code van de vorige opdracht.
+\end{enumerate}
+
+
+\subsection{For}
+Als je een stukje code vaker dan \'e\'en keer wilt uitvoeren, kan je hem natuurlijk een aantal keer onder elkaar kopi\"eren en plakken. Als het aantal keer dat je iets wilt doen niet vast ligt, is dat niet meer handig\footnote{Merk op dat het nooit verstandig is om hier te kopi\"eren en plakken. Als je iets maar twee keer moet doen, kan dat prima met een for loop}. Daarvoor is de \icode{for}-loop.
+Deze herhaalt iets een bepaald aantal keer. Het kan ook zo zijn dat het aantal keer dat iets herhaalt wordt nog niet van tevoren vast ligt. De syntax is
+\begin{lstlisting}
+for(initialisatie; conditie; verhoging){
+	//code die herhaald wordt
+}
+\end{lstlisting}
+In de initialisatie wordt de teller variabele meestal gedeclareerd en ge\"initialiseerd\footnote{In \icode{int i = 1;}, is \icode{int i} de declaratie van \icode{i}, en de \icode{i = 1} is de initialisatie.}. Dat is dus bijvoorbeeld \icode{int i = 0;}. De conditie lijkt op de conditie van het \icode{if}-statement. Het is weer een boolean waarde die bepaald of we moeten doorgaan met het herhalen van de code of dat we al moeten stoppen. Vaak is dit iets als \icode{i < 10}. De verhoging bepaald wat we na elke iteratie met de variabele doen. Dat is meestal iets als \icode{i++}, wat equivalent is met \icode{i+=1} en \icode{i=i+1}. Als we dit combineren, zien we dat \icode{i} begint op 0 en net zo lang 1 verhoogd wordt, tot dat hij niet meer kleiner is dan 10. Op dat moment zal \icode{i} dus 10 zijn. In het algemeen is de code van een \icode{for}-loop equivalent aan
+\begin{lstlisting}
+initialisatie;
+if(conditie){
+	//code die herhaald wordt
+	verhoging;
+	if(conditie){
+		//code die herhaald wordt
+		verhoging;
+		if(conditie){
+			//code die herhaald wordt
+			verhoging;
+			if(conditie){
+				// oneindig lang door
+			}
+		}
+	}
+}
+\end{lstlisting}
+Hier is een voorbeeld van het gebruik van \icode{for}.
+\code{code/for.cpp}
+Als je dit intikt en uitvoert, zie je dat er eerst drie keer 'hoera' wordt geschreven, en daarna de getallen van $0$ tot en met $10$. De werking van een \icode{for}-loop is als volgt:\\
+In de \icode{initialisatie} wordt meestal een variabele ge\"initialiseerd, zoals hier \icode{int i=0}. In de \icode{conditie} kijken we steeds of we moeten doorgaan met de volgende iteratie, of dat we moeten stoppen met herhalen. Zolang de conditie waar is gaan we door, en als hij niet meer waar is stoppen we met herhalen. Hier gaan we dus alleen maar door wanneer \icode{i} kleiner is dan $3$. In de \icode{verhoging} verhogen we de variabele waarover we lopen. Meestal verhogen we hem steeds met $1$ tegelijk maar dat hoeft niet per se.
+
+\subsubsection{Opdrachten}
+\begin{enumerate}
+	\item
+		Print nu 5 keer \icode{"hoera"} op een nieuwe regel.
+	\item
+		Schrijf nu alleen de even getallen tot en met 10 op.
+	\item 
+		TODO: MEER OPDRACHTEN
+\end{enumerate}
+
+\subsection{Arrays [optioneel]}
+\code{code/array.cpp}
+
+\subsection{While [optioneel]}
+Tot slot hebben we nog de \icode{while}-loop. Deze lijkt een beetje op de \icode{for}-loop, maar is toch anders. Bij een \icode{for}-loop weten we meestal van tevoren al hoe vaak we de code willen herhalen. Als we dat niet precies weten, is een \icode{while}-loop handig. We herhalen de code nu net zo lang tot \icode{conditie} onwaar wordt in
+\begin{lstlisting}
+while(conditie){
+	code die herhaald wordt;
+}
+\end{lstlisting}
+In de code hieronder zie je een voorbeeld. We beginnen hier met $n=0$, en vervolgens schrijven we steeds $n^2$ op, net zo lang tot $n^2$ groter wordt dan $1000$.
+\code{code/while.cpp}
+\end{document}
+
