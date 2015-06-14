@@ -1,5 +1,5 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[a4paper]{geometry}
+\usepackage[a4paper,margin=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[dutch]{babel}
@@ -46,12 +46,7 @@
 \newcommand{\mono}{\texttt}
 
 \fancyhead[R]{}
-\fancyfoot{}
-%\fancyhead[C]{\today}
-%\fancyfoot[C]{\thepage}
-
-%\fancyhead[L]{Ragnar Groot Koerkamp/Fysicie}
-%\fancyhead[R]{Inleiding programmeren natuurkundigen}
+\fancyfoot[C]{\thepage}
 
 \title{Inleiding programmeren natuurkundigen}
 \author{
@@ -76,9 +71,9 @@ In deze cursus leer je de basis van programmeren in \cpp. We beginnen we bij het
 Na afloop van deze cursus zou je van onderstaande code moeten kunnen achterhalen wat het doet en hoe het werkt:
 \code{code/eind.cpp}
 \subsection{Compilers}
-Een computer heeft heel veel rekenkracht en hier kunnen zeker natuurkundigen nuttig gebruik van maken. Met behulp van een computer kunnen we bijvoorbeeld numerieke oplossingen vinden van vergelijkingen die geen analytische oplossing hebben. Maar om de computer iets voor ons te laten uitrekenen, zullen we hem moeten vertellen wat hij precies moet doen. We moeten dus tegen de computer kunnen praten, en dit praten gebeurt in een programmeertaal. Er zijn verschillende programmeertalen zoals C, C++, Java en Python, en een programma schrijven we in zo'n programmeertaal. De computer kan echter deze programmeertalen nog niet direct begrijpen, daarvoor is nog een extra tussenstap nodig. De broncode, geschreven door ons in een programmeertaal, moet worden vertaald naar machinecode. Deze machinecode bevat de opdrachten die de processor moet uitvoeren. Een compiler vertaalt de programmeertaal voor ons naar die machinecode. Voor iedere programmeertaal bestaan er compilers die die programmeertaal naar machinecode vertalen.
+Een computer heeft heel veel rekenkracht en hier kunnen zeker natuurkundigen nuttig gebruik van maken. Met behulp van een computer kunnen we bijvoorbeeld numerieke oplossingen vinden van vergelijkingen die geen analytische oplossing hebben. Maar om de computer iets voor ons te laten uitrekenen, zullen we hem moeten vertellen wat hij precies moet doen. We moeten dus tegen de computer kunnen praten, en dit praten gebeurt in een programmeertaal. Er zijn verschillende programmeertalen zoals C, \cpp, Java en Python, en een programma schrijven we in zo'n programmeertaal. De computer kan echter deze programmeertalen nog niet direct begrijpen, daarvoor is nog een extra tussenstap nodig. De broncode, geschreven door ons in een programmeertaal, moet worden vertaald naar machinecode. Deze machinecode bevat de opdrachten die de processor moet uitvoeren. Een compiler vertaalt de programmeertaal voor ons naar die machinecode. Voor iedere programmeertaal bestaan er compilers die die programmeertaal naar machinecode vertalen.
 
-Er zijn verschillende C++ compilers. Veel compilers moet je installeren op je computer. Dat gaan we vandaag niet doen, in plaats daarvan gaan we gebruik maken van cloud9, dat is een compiler in een cloud. Deze kun je vinden op \url{http://c9.io}. Verdere uitleg over hoe je precies gebruik maakt van deze compiler vind je bij de eerste opgave.
+Er zijn verschillende \cpp compilers. Veel compilers moet je installeren op je computer. Dat gaan we vandaag niet doen, in plaats daarvan gaan we gebruik maken van cloud9, dat is een compiler in een cloud. Deze kun je vinden op \url{http://c9.io}. Verdere uitleg over hoe je precies gebruik maakt van deze compiler vind je bij de eerste opgave.
 
 \subsection{Basis}
 We bekijken nu eerst hoe een programma globaal in elkaar zit.  Elk programma heeft een \icode{main} functie. Bij het uitvoeren van het programma wordt als eerste alles wat in de main functie staat uitgevoerd. Dit gebeurt regel voor regel, van boven naar beneden. Vandaag staat alle code in de main functie, dus tussen de accolades die aangeven welke code bij de \icode{main} hoort.
@@ -95,7 +90,7 @@ Verder zie je ook nog \icode{#include <iostream>} staan. \icode{<iostream>} is e
 (De console is een scherm waar je output naar toe kunt schrijven en waar je input uit terug kunt vragen. Bij cloud9 is dat het schermpje dat onder in je beeldscherm staat, zoals je straks vanzelf zult zien.)
 Alle functies in dat pakketje behoren tot de \cpp-standaard-library. Om ze makkelijk te gebruiken moeten we \icode{using namespace std;} bovenaan onze code zetten.
 
-Let op het gebruik van hoofdletters en kleine letters in de code. C++ is hoofdlettergevoelig, dus \icode{Int} is niet hezelfde als \icode{int}!
+Let op het gebruik van hoofdletters en kleine letters in de code. \cpp is hoofdlettergevoelig, dus \icode{Int} is niet hezelfde als \icode{int}!
 
 
 \subsubsection{Opdrachten}
@@ -103,7 +98,7 @@ Let op het gebruik van hoofdletters en kleine letters in de code. C++ is hoofdle
 	\item
 		Type de code uit het voorbeeld over, maar laat het commentaar nog even weg. Om dit te kunnen doen in cloud9 volg je de volgende stappen:
 		
-		Ga naar \textbf{Cloud 9} op \url{http://c9.io/}. Maak een account aan. Als je ingelogd bent, klik je op 'create workspace' en vervolgens weer op 'create workspace'. Kies een leuke naam voor je workspace. Selecteer C/C++, de rest kun je laten staan zoals het nu staat. Klik op create en wacht even. (Het duurt even voordat de workspace is gemaakt, ook al spring je direct weer terug naar het dashboard.) Klik links onder 'my projects' op de workspace die je net hebt gecreëerd. Wacht even tot er 'start editing' staat en klik hierop. Ga vervolgens naar 'File' en klik op 'New File'. Sla op met CTRL + S en verander de naam van de file naar \mono{hallo.cpp}. De naam van je programma mag altijd alleen letters en underscores bevatten. De \mono{.cpp} zorgt ervoor dat de compiler weet dat het een C++ programma is. (De \mono{p}'s staan voor \emph{plus}.)
+		Ga naar \textbf{Cloud 9} op \url{http://c9.io/}. Maak een account aan. Als je ingelogd bent, klik je op 'create workspace' en vervolgens weer op 'create workspace'. Kies een leuke naam voor je workspace. Selecteer C/\cpp, de rest kun je laten staan zoals het nu staat. Klik op create en wacht even. (Het duurt even voordat de workspace is gemaakt, ook al spring je direct weer terug naar het dashboard.) Klik links onder 'my projects' op de workspace die je net hebt gecreëerd. Wacht even tot er 'start editing' staat en klik hierop. Ga vervolgens naar 'File' en klik op 'New File'. Sla op met CTRL + S en verander de naam van de file naar \mono{hallo.cpp}. De naam van je programma mag altijd alleen letters en underscores bevatten. De \mono{.cpp} zorgt ervoor dat de compiler weet dat het een \cpp programma is. (De \mono{p}'s staan voor \emph{plus}.)
 		
 		Type nu de code uit het voorbeeld over in dit bestand, maar laat het commentaar nog even weg. Start het programma door op 'Run' bovenaan in de werkbalk te klikken. Als alles goed gaat zie je nu onderin het beeld een blauw schermpje met de tekst 'Running /home/ubuntu/workspace/hallo.cpp'. Omdat het programma nog niets doet, staat hier nog geen uitvoer onder.
 	\item
@@ -158,16 +153,18 @@ Hierbij duiden de getallen 7 en 29 na hallo.cpp respectievelijk het regelnummer 
 \subsection{Variabelen}
 Er zijn meerdere soorten variabelen. De belangrijkste zijn getallen en strings. Een getal kan of geheel zijn, of re\"eel. In het eerste geval gebruiken we een \icode{int}, wat staat voor \emph{integer}. Als een getal niet altijd geheel is, hebben we een \icode{double} nodig. Een double kan elke mogelijke waarde aannemen, dus bijvoorbeeld ook $1.2$ of $\sqrt 2$.\\
 Een \icode{string} is een stuk tekst. In computertaal is dat gewoon een rij van tekens. Verder hebben we nog \icode{bool}s. Dat zijn waarden die waar (\icode{true}) of onwaar (\icode{false}) zijn.
+
+Zorg dat je alle operaties in de code hieronder snapt, en controleer of de uitvoer klopt met wat je verwacht.\footnote{Deze code is ook online beschikbaar op \url{http://github.com/ragnargrootkoerkamp/cpp-tutorial} in \mono{code/vars.cpp}}
+Let er op dat we nu ook de pakketjes \icode{<string>} en \icode{cmath} nodig hebben voor de strings en voor het worteltrekken en machtsverheffen.
 \code{code/vars.cpp}
-\subsubsection{Opdrachten}
-\begin{enumerate}
-		\item
-\end{enumerate}
 
 
 \subsection{Console invoer}
 Het is soms ook handig om juist invoer van de gebruiker te lezen. Daarvoor hebben we \icode{cin}, console-in. Hieronder lezen we een getal in, wat we in de variabele \icode{leeftijd} stoppen. De pijltjes staan hier naar rechts, omdat het getal uit de console komt, en in de variabele wordt gestopt. We kunnen ook naar een string lezen in plaats van naar een getal. De syntax is: \\
-\icode{cin >> } \emph{variabele met het type dat je wilt lezen} \icode{;}
+
+\icode{cin >> } \emph{variabele met het type dat je wilt lezen} \icode{;}\\
+
+Bijvoorbeeld:
 \code{code/cin.cpp}
 \subsubsection{Opdrachten}
 \begin{enumerate}
@@ -290,17 +287,29 @@ while(conditie){
 In de code hieronder zie je een voorbeeld. We beginnen hier met $n=0$, en vervolgens schrijven we steeds $n^2$ op, net zo lang tot $n^2$ groter wordt dan $1000$.
 \code{code/while.cpp}
 
+\clearpage
 \subsection{Tips: Hoe nu verder?}
-In twee uur kunnen we je helaas niet alles leren wat er te leren valt over C++, dus hier komen een aantal tips die je kunt gebruiken als je zelfstandig verder wilt gaan met leren programmeren in C++. 
+In twee uur kunnen we je helaas niet alles leren wat er te leren valt over \cpp, dus hier komen een aantal tips die je kunt gebruiken als je zelfstandig verder wilt gaan met leren programmeren in \cpp. 
 \begin{itemize}
 	\item Raak niet in paniek als je foutmeldingen krijgt, ook niet als het er heel veel zijn. Het is heel normaal om fouten te maken (bijvoorbeeld typefouten) en dit is hoe de compiler je waarschuwt voor deze fouten Kijk in welk regelnummer de fout zich heeft voorgedaan (zie opdracht) en google de specifieke foutmelding als je niet weet wat deze betekent. Soms kan \'e\'en kleine typefout al een hele reeks foutmeldingen genereren, maar laat je daardoor niet afschrikken! 
 	\item Soms kan het gebeuren dat je een foutmelding toch niet kan vinden, ondanks het regelnummer dat staat aangegeven bij de foutmelding. Het kan handig zijn om dan specifieke delen van je programma waarvan je vermoedt dat ze de fout veroorzaken even uit te zetten met behulp van commentaar (dus \icode{//} of \icode{/* */}). Als het programma het dan wel doet, dan weet je dat de fout zich bevindt in de regels die nu in het commentaar staan! 
-	\item Er is ontzettend veel te vinden over C++ (en ook andere programmeertalen) op internet. Eigenlijk is er maar \'en\'en goede tactiek als je nog meer wilt leren: google je suf! 
-	\item Handige links zijn onder andere: stackexchange.com \footnote{\textbf{Jij hier misschien nog ideeën voor? of dit weglaten?}}
-	\item Als je een compiler wilt installeren op een Windows computer dan zijn handige alternatieven: Code::Blocks en Visual Studio Express 2013 for Windows Desktop. 
-	\item Als je twijfelt of je berekeningen goed gaan kan het handig zijn om als tussenstappen de waarde van een variabele te printen 
-	\item Als het je leuk lijkt om een programmeervak te gaan volgen, kun je eens naar deze vakken gaan kijken: bij natuurkunde `Numerieke Methoden' (C en Mathematica), bij wiskunde `Programmeren in de wiskunde' (Python) en bij informatica `Imperatief programmeren' (C\#, eerstejaarsvak, dus goed te doen voor natuurkundigen ook!). Geen van deze vakken wordt in C++ gegeven, maar ze worden wel in soortgelijke talen gegeven. Als je eenmaal in een taal kunt programmeren is het heel makkelijk om over te stappen naar een andere taal, dus ook deze vakken kunnen je uiteindelijk zeker helpen om beter te worden in C++. 
-	\item We hebben express te veel opdrachten gemaakt voor vandaag, dus niet getreurd, je kunt thuis gewoon verder gaan met oefenen! Daarnaast zijn er op het internet ook heel veel beginnersopdrachten in C++ te vinden, zoals op: \url{http://www.worldbestlearningcenter.com/index_files/cpp-tutorial-variables_datatypes_exercises.htm}.
+	\item Er is ontzettend veel te vinden over \cpp (en ook andere programmeertalen) op internet. Eigenlijk is er maar \'e\'en goede tactiek als je nog meer wilt leren: google je suf!\footnote{
+			Ook ik (Ragnar) google tijdens het programmeren ruim 10 keer per uur naar kleine dingen. Als je iets even niet meer precies weet: Meteen opzoeken. Op die manier moet je dingen soms meerdere keren opzoeken, maar uiteindelijk onthoud je ze vanzelf.
+		}
+	\item Handige links zijn onder andere:
+		\begin{enumerate}
+				\item
+					\url{http://stackoverflow.com}, een erg groot forum waar op al je vragen een antwoord te vinden is.
+					Meestal zijn dit de nuttige resultaten die je via google vindt.
+				\item
+					\url{http://cppreference.com}, een online \cpp documentatie. Dit is vooral handig als je wilt weten wat een functie, waarvan je de naam al weet, precies doet.
+				\item 
+					\url{http://cplusplus.com}, een andere documentatie, probeer ze allebei, en kijk welke je fijner vindt.
+	\end{enumerate}
+	\item Als je een compiler wilt installeren op een Windows computer dan zijn handige alternatieven: Code::Blocks en Visual Studio Express 2013 for Windows Desktop. Er zijn van Visual Studio ook gratis versies voor studenten.
+	\item Als je twijfelt of je berekeningen goed gaan kan het handig zijn om als tussenstappen de waarde van een variabele te printen met \icode{cout}. Er is ook nog \icode{cerr}, wat speciaal gemaakt is voor errors, maar verder op precies dezelfde manier gebruikt wordt.
+	\item Als het je leuk lijkt om een programmeervak te gaan volgen, kun je eens naar deze vakken gaan kijken: bij natuurkunde `Numerieke Methoden' (C en Mathematica), bij wiskunde `Programmeren in de wiskunde' (Python) en bij informatica `Imperatief programmeren' (C\#, eerstejaarsvak, dus goed te doen voor natuurkundigen ook!). Geen van deze vakken wordt in \cpp gegeven, maar ze worden wel in soortgelijke talen gegeven. Als je eenmaal in een taal kunt programmeren is het heel makkelijk om over te stappen naar een andere taal, dus ook deze vakken kunnen je uiteindelijk zeker helpen om beter te worden in \cpp. 
+	\item We hebben express te veel opdrachten gemaakt voor vandaag, dus niet getreurd, je kunt thuis gewoon verder gaan met oefenen! Daarnaast zijn er op het internet ook heel veel beginnersopdrachten in \cpp te vinden, zoals op: \url{http://www.worldbestlearningcenter.com/index_files/cpp-tutorial-variables_datatypes_exercises.htm}.
 \end{itemize}
 
 \end{document}

@@ -9,6 +9,4 @@ int main(){
 		cout << (n * n) << endl;
 		n = n+1;
 	}
-
-	return 0;
 }
