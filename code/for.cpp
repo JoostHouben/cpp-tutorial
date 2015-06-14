@@ -11,6 +11,4 @@ int main(){
 	for(int getal = 0; getal <= 10; getal++){
 		cout << getal << endl;
 	}
-
-	return 0;
 }

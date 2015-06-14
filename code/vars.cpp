@@ -23,6 +23,4 @@ int main(){
 
 	string s = "Hello world!";
 	cout << s << endl;
-
-	return 0; // no error
 }

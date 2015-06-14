@@ -8,4 +8,9 @@ int main(){
 
 	// en schrijf een getal
 	cout << 22 << endl;
+
+	// of meerdere dingen tegelijk
+	cout << "Het is vandaag:" << endl;
+	cout << 18 << " juni " << 2015 << endl; // let op de spaties!
+
 }

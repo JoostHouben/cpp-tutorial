@@ -1,6 +1,7 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper]{geometry}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[dutch]{babel}
 \usepackage{amssymb, amsmath}
 \usepackage{fancyhdr}
@@ -62,7 +63,7 @@ Ragnar Groot Koerkamp
  
 %\renewcommand{\contentsname}{Inhoud}
 
-\newcommand{\cpp}{\mono{C++}}
+\newcommand{\cpp}{\mono{C++ }}
  
 \begin{document}
  
@@ -80,71 +81,83 @@ Een computer heeft heel veel rekenkracht en hier kunnen zeker natuurkundigen nut
 Er zijn verschillende C++ compilers. Veel compilers moet je installeren op je computer. Dat gaan we vandaag niet doen, in plaats daarvan gaan we gebruik maken van cloud9, dat is een compiler in een cloud. Deze kun je vinden op \url{http://c9.io}. Verdere uitleg over hoe je precies gebruik maakt van deze compiler vind je bij de eerste opgave.
 
 \subsection{Basis}
-We bekijken nu eerst hoe een programma globaal in elkaar zit.  \textbf{Elk programma heeft een \icode{main} functie. Bij het uitvoeren van het programma wordt als eerste alles wat in de main functie staat uitgevoerd. Dit gebeurt regel voor regel, van boven naar beneden.} Vandaag staat alle code in de main functie, dus tussen de accolades die aangeven welke code bij de \icode{main} hoort.
-Bovenaan het programma zie je groene regels commentaar staan die beginnen met \icode{//}. Deze regels worden altijd overgeslagen bij het uitvoeren. Het commentaar begint pas bij de \icode{//}, dus ervoor kan nog wel code staan. Het is handig om commentaar bij de code te zetten om te verduidelijken wat de code doet. Dat is handig als je ergens later weer naar terug kijkt en dan niet opnieuw hoeft uit te zoeken wat de code nou eigenlijk deed. Commentaar kan ook meer dan een regel \textbf{omvatten}. Dan gebruik je aan het begin \icode{/*} en aan het einde \icode{*/}. \textbf{Hieronder staat een voorbeeld van een basis voor een programma.} 
+We bekijken nu eerst hoe een programma globaal in elkaar zit.  Elk programma heeft een \icode{main} functie. Bij het uitvoeren van het programma wordt als eerste alles wat in de main functie staat uitgevoerd. Dit gebeurt regel voor regel, van boven naar beneden. Vandaag staat alle code in de main functie, dus tussen de accolades die aangeven welke code bij de \icode{main} hoort.
+Bovenaan het programma zie je groene regels commentaar staan die beginnen met \icode{//}. Deze regels worden altijd overgeslagen bij het uitvoeren. Het commentaar begint pas bij de \icode{//}, dus ervoor kan nog wel code staan. Het is handig om commentaar bij de code te zetten om te verduidelijken wat de code doet. Dat is handig als je ergens later weer naar terug kijkt en dan niet opnieuw hoeft uit te zoeken wat de code nou eigenlijk deed. Commentaar kan ook meer dan \'e\'en regel omvatten. Dan gebruik je aan het begin \icode{/*} en aan het einde \icode{*/}. Hieronder staat een voorbeeld van een basis voor een programma. 
 
 \code{code/template.cpp}
 
-Zoals je misschien al is opgevallen eindigt bijna elke regel van het voorbeeld met een puntkomma (\icode{;}). Dit is nodig zodat het programma dat de code uitvoert weet wanneer een nieuwe regel met nieuwe code begint. In sommige gevallen zijn geen puntkomma's nodig, zoals voor of na een accolade.
+In \cpp moeten de meeste regels met een puntkomma (\icode{;}) eindigen. Dat is nodig zodat de compiler weet wanneer een nieuwe regel met nieuwe code begint. Alleen in sommige gevallen zijn geen puntkomma's nodig, zoals direct na een accolade of achter een \icode{#include}.
 
 In \cpp  mag je overal zo veel witruimte (spaties, tabs, enters) neerzetten als je maar wilt. De enige eis is dat sommige dingen niet direct aan elkaar geschreven morgen worden, en er dus minstens een spatie tussen moet zitten.
 
 
-Verder zie je ook nog \icode{#include <iostream>} staan. \icode{<iostream>} is een pakketje dat we later nodig zullen hebben om tekst te schrijven naar de console en om data in te lezen. (\textbf{De console is een scherm waar je output naar toe kunt schrijven en waar je input uit terug kunt vragen. Bij cloud9 is dat het schermpje dat onder in je beeldscherm staat, zoals je straks vanzelf zult zien.}) Alle functies in dat pakketje behoren tot de \cpp-standaard-library\footnote{beter kan ik het niet maken. Suggesties? \textbf{Sorry, wij kunnen ook niet beter xD}}. \textbf{Om ze makkelijk te gebruiken} moeten we daarom ook \icode{using namespace std;} bovenaan onze code zetten. \footnote{\textbf{We hebben besloten om cloud9 te gaan gebruiken, het is nog makkelijker en toegankelijker dan visual studio. Je hebt dan een ubuntu omgeving met terminal, maar daar gaan we in principe geen gebruik van maken. Er zit ook gewoon een 'run' knop. Maar de output wordt dus wel naar de terminal geprint, en dat is dus niet een zwart schermpje dat verschijnt in dit geval. En het voorbeeld kan worden aangepast, want iets in de grand van getline is dan niet meer nodig.}}
+Verder zie je ook nog \icode{#include <iostream>} staan. \icode{<iostream>} is een pakketje dat we later nodig zullen hebben om tekst te schrijven naar de console en om data in te lezen.
+(De console is een scherm waar je output naar toe kunt schrijven en waar je input uit terug kunt vragen. Bij cloud9 is dat het schermpje dat onder in je beeldscherm staat, zoals je straks vanzelf zult zien.)
+Alle functies in dat pakketje behoren tot de \cpp-standaard-library. Om ze makkelijk te gebruiken moeten we \icode{using namespace std;} bovenaan onze code zetten.
 
-\textbf{Let op het gebruik van hoofdletters en kleine letters in de code. C++ is hoofdlettergevoelig, dus \icode{Int} is niet hezelfde als \icode{int}!}
+Let op het gebruik van hoofdletters en kleine letters in de code. C++ is hoofdlettergevoelig, dus \icode{Int} is niet hezelfde als \icode{int}!
 
 
-Het programma eindigt met \icode{return 0;}\footnote{of dit gewoon weglaten?}. Het getal dat achter \icode{return} staat, staat voor een mogelijke error die het programma geeft. 0 betekent hier dat er geen errors zijn geweest. \footnote{\textbf{Gordian en ik hadden een beetje moeite met de return. We vonden de manier waarop het nu uitgelegd staat niet helemaal duidelijk (je kunt deze zinnen heel makkelijk verkeerd opvatten). Maar we wisten ook geen betere manier om het uit te leggen. Aangezien het niet verplicht is om in de main iets te returnen, vinden wij het beter om de return helemaal weg te laten. Het werkt anders alleen maar verwarrend.}}
 \subsubsection{Opdrachten}
 \begin{enumerate}
 	\item
-		\textbf{Type de code uit het voorbeeld over, maar laat het commentaar nog even weg. Om dit te kunnen doen in cloud9 volg je de volgende stappen: }
+		Type de code uit het voorbeeld over, maar laat het commentaar nog even weg. Om dit te kunnen doen in cloud9 volg je de volgende stappen:
 		
-		\textbf{Ga naar /textbf{Cloud 9} op https://c9.io/. Maak een account aan. Als je ingelogd bent, klik je op 'create workspace' en vervolgens weer op 'create workspace'. Kies een leuke naam voor je workspace. Selecteer C/C++, de rest kun je laten staan zoals het nu staat. Klik op create en wacht even. Klik links onder 'my projects' op de workspace die je net hebt gecreëerd. Wacht even tot er 'start editing' staat en klik hierop. Ga vervolgens naar 'File' en klik op 'New File'. Sla op met CTRL + S en verander de naam van de file naar 'hallo.cc'. De naam van je programma mag altijd alleen letters en underscores bevatten. De .cc zorgt ervoor dat de compiler weet dat het een C++ programma is. }
+		Ga naar \textbf{Cloud 9} op \url{http://c9.io/}. Maak een account aan. Als je ingelogd bent, klik je op 'create workspace' en vervolgens weer op 'create workspace'. Kies een leuke naam voor je workspace. Selecteer C/C++, de rest kun je laten staan zoals het nu staat. Klik op create en wacht even. (Het duurt even voordat de workspace is gemaakt, ook al spring je direct weer terug naar het dashboard.) Klik links onder 'my projects' op de workspace die je net hebt gecreëerd. Wacht even tot er 'start editing' staat en klik hierop. Ga vervolgens naar 'File' en klik op 'New File'. Sla op met CTRL + S en verander de naam van de file naar \mono{hallo.cpp}. De naam van je programma mag altijd alleen letters en underscores bevatten. De \mono{.cpp} zorgt ervoor dat de compiler weet dat het een C++ programma is. (De \mono{p}'s staan voor \emph{plus}.)
 		
-		\textbf{Type nu de code uit het voorbeeld over in dit bestand, maar laat het commentaar nog even weg. Start het programma door op 'Run' bovenaan in de werkbalk te klikken. \footnote{\textbf{Misschien hier iets zeggen van: Als het goed gaat dan geberut er ..... Misschien let ik niet op, maar dat is het voorbeeld waarin niets gebeurt toch? Anders krijgen we straks allemaal vragen 'Waarom gebeurt er niets?' haha :P Of dus iets van: als je geen foutmelding krijgt is je programma goed uitgevoerd.}}	}
+		Type nu de code uit het voorbeeld over in dit bestand, maar laat het commentaar nog even weg. Start het programma door op 'Run' bovenaan in de werkbalk te klikken. Als alles goed gaat zie je nu onderin het beeld een blauw schermpje met de tekst 'Running /home/ubuntu/workspace/hallo.cpp'. Omdat het programma nog niets doet, staat hier nog geen uitvoer onder.
 	\item
 		Voeg nu ook commentaar toe op de plekken waar dat in het voorbeeld ook is gedaan. Check dat het programma nog steeds werkt.
 	\item
-		Probeer nu ook \textbf{om} binnen \icode{main} je eigen commentaar toe te voegen van beide soorten, \textbf{dus met // en \icode{/* */}.}
+		Probeer nu ook \textbf{om} binnen \icode{main} je eigen commentaar toe te voegen van beide soorten, dus met \icode{//} en \icode{/* */}.
 	\item 
-		\textbf{Voeg nu nogmaals commentaar toe in de vorm van een blok} (dus van de soort \icode{/* */}) toe, \textbf{maar doe dit nu ergens midden in een code regel}, dus bijvoorbeeld tussen \icode{int} en \icode{main(){}. Omdat witruimte niet van belang is en het commentaar wordt weggegooid, zou je programma nog steeds moeten werken.
+		Voeg nu nogmaals commentaar toe in de vorm van een blok (dus van de soort \icode{/* */}) toe, maar doe dit nu ergens midden in een code regel, dus bijvoorbeeld tussen \icode{int} en \icode{main()}. Omdat witruimte niet van belang is en het commentaar wordt weggegooid, zou je programma nog steeds moeten werken.
 \end{enumerate}
 
 \subsection{Console uitvoer}
-Bij Cloud 9 staat onderaan je beeldscherm een breed, rechthoekig schermpje. Dat heet de \emph{console} of \emph{terminal}. \footnote{\textbf{Hier alsnog iets zeggen over dat de terminal ook een zwart schermpje kan zijn? Ze gaan zo'n ding snel genoeg tegenkomen denk ik, dus beter weten ze nu al dat het hetzelfde is.}} Daar kunnen we tekst neerzetten of juist van lezen. Het neerzetten van tekst kan met het commando \icode{cout}, oftewel, Console-out. Je kan achter de \icode{cout <<} bijvoorbeeld een string of een getal zetten. Ook is er het speciale commando \icode{endl}, dat voor \emph{endline} staat. Hiermee be\"eindig je dus een regel. Het is handig om te onthouden dat je de tekst 'in de console stopt' en de pijltjes dus richting \icode{cout} staan. \textbf{De syntax van een programmeertaal omvat de spellingsregels/taalregels van de programmeertaal. De syntax beschrijft dus hoe je een bepaalde opdracht die je aan de computer wilt geven op moet schrijven. De algemene syntax van cout is:}\\
+Bij Cloud 9 staat onderaan je beeldscherm een breed, rechthoekig blauw schermpje. Dat heet de \emph{console} of \emph{terminal}. Dit kan ook een zwart popup-venster zijn of een linux-terminal, afhankelijk van de programmeer omgeving. Vandaag houden we het echter bij Cloud 9. In de console kunnen we tekst wegschrijven of juist lezen. Het neerzetten van tekst kan met het commando \icode{cout}, oftewel, Console-out. Je kan achter de \icode{cout <<} bijvoorbeeld een tekst of een getal zetten. Ook is er het speciale commando \icode{endl}, dat voor \emph{endline} staat. Hiermee be\"eindig je dus een regel. Het is handig om te onthouden dat je de tekst 'in de console stopt' en de pijltjes dus richting \icode{cout} staan.
+
+De syntax van een programmeertaal omvat de spellingsregels/taalregels van de programmeertaal. De syntax beschrijft dus hoe je een bepaalde opdracht die je aan de computer wilt geven op moet schrijven. De algemene syntax van cout is:\\
+
 \icode{cout << } \emph{string, cijfer, of nog iets anders} \icode{;}\\
-\textbf{Hierbij staat de tekst `string, cijfer, of nog iets anders' schuingedrukt, omdat je deze niet letterlijk zo in je programma mag zetten. Hier moet je bij het schrijven van je programma nog een specifieke invulling aan geven.} Het is soms handig om meer dan \'e\'en ding tegelijk te kunnen schrijven. Dat kan met behulp van:
+
+Hierbij staat de tekst `string, cijfer, of nog iets anders' schuingedrukt, omdat je deze niet letterlijk zo in je programma mag zetten. Hier moet je bij het schrijven van je programma nog een specifieke invulling aan geven. Het is soms handig om meer dan \'e\'en ding tegelijk te kunnen schrijven. Dat kan met behulp van:\\
+
 \icode{cout << } \emph{string, cijfer, of nog iets anders} \icode{ << } \emph{andere string, cijfer, etc} \icode{ << } .. \icode{;}\\
-Als je, zoals in het voorbeeld, direct een \icode{endline} gebruikt, heb je een speciale versie van de tweede, langere, variant gebruikt. \footnote{\textbf{Deze zin snap ik niet helemaal. Ik denk dat ik weet wat je ermee bedoelt te zeggen. Ik denk dat het prima is om in het voorbeeld cout << "blabla " << 22 << endl; te doen. Het is goed als ze een voorbeeld van deze variant zien. Of misschien twee voorbeelden, één met de korte en één met de lange variant.}}
 
 \code{code/cout.cpp}
 
 \subsubsection{opdrachten}
 \begin{enumerate}
 		\item
-			Schrijf nu alleen de tekst "How are you?" naar de console in plaats van "Mijn leeftijd is", en zorg dat het getal niet meer wordt geschreven door er commentaar van te maken.\footnote{splitsen naar 2 opdrachtjes?}
+			Maak eerst van de regel waarop $22$ wordt weggeschreven commentaar, en maak vervolgens van het wegschrijven van de datum blok-commentaar.
+		\item
+			Schrijf nu alleen de tekst "How are you?" naar de console in plaats van "Mijn leeftijd is".
 		\item 
-			\textbf{Verplichte opdracht:} Verander alle dubbele pijltjes \icode{<<} nu naar een enkel pijltje \icode{<} en voer het programma uit. Je zult zien dat er geen "How are you" in de console komt te staan. In plaats daarvan krijgen we een foutmelding te zien. Aangezien je nog wel veel vaker een fout zult maken en foutmeldingen tegen zult komen, is het handig om deze te leren lezen. Op de tweede regel van de console taat nu: /home/ubuntu/workspace/hallo.cc: In function ‘int main()’:'. Hier staat dat er in de main functie van het programma hallo.cc een fout is opgetreden. Aangezien ons programma alleen uit een main functie bestaat komen we hier nog niet erg verder mee. Als je naar de tweede regel kijkt staat er waarschijnlijk iets als: /home/ubuntu/workspace/hallo.cc:7:29: error: invalid operands of types ‘bool’ and ‘<unresolved overloaded function type>’ to binary ‘operator<' cout < "Hello World!" < endl;. Hierbij duiden de getallen 7 en 29 na hallo.cc respectievelijk het regelnummer en kolomnummer aan waarop de fout is opgetreden. Let op: dit is het regelnummer waarop de compiler merkt dat er een fout is gemaakt. Dit is niet altijd het regelnummer waar de fout staat, maar meestal wel. Op de rest van deze regel staat een uitleg van wat de fout precies betekent. In dit geval hebben we de operator < gebruikt die voor booleans (bool) bedoelt is of dingen die geen booleans zijn. Als je niet weet wat een bepaalde foutmelding betekent loont het ook altijd om deze even te googlen. \footnote{Misschien kan dit dan beter later, als ze weten wat een boolean is.}
+			\textbf{Verplichte opdracht:} Verander alle dubbele pijltjes \icode{<<} nu naar een enkel pijltje \icode{<} en voer het programma uit. Je zult zien dat er geen "How are you" in de console komt te staan. In plaats daarvan krijgen we een foutmelding te zien. Aangezien je nog wel veel vaker een fout zult maken en foutmeldingen tegen zult komen, is het handig om deze te leren lezen. Op de tweede regel van de console staat nu:\\
+\mono{/home/ubuntu/workspace/hallo.cpp: In function ‘int main()’:}\\
+Hier staat dat er in de main functie van het programma hallo.cpp een fout is opgetreden. Aangezien ons programma alleen uit een main functie bestaat komen we hier nog niet erg verder mee. Als je naar de volgende regel kijkt staat er waarschijnlijk iets als:\\
+\mono{/home/ubuntu/workspace/hallo.cc:7:29: error: invalid operands of types ‘bool’ and ‘<unresolved overloaded function type>’ to binary ‘operator<'\\
+cout < "How are you?" < endl;}\\
+Hierbij duiden de getallen 7 en 29 na hallo.cpp respectievelijk het regelnummer en kolomnummer aan waarop de fout is opgetreden. Let op: dit is het regelnummer waarop de compiler merkt dat er een fout is gemaakt. Dit is niet altijd het regelnummer waar de fout staat, maar meestal wel. Op de rest van deze regel staat een uitleg van wat de fout precies betekent. In dit geval hebben we de \mono{operator<} gebruikt die voor booleans (bool) bedoelt is op dingen die geen booleans zijn. (Een boolean is een variabele die waar of niet waar is.) Als je niet weet wat een bepaalde foutmelding betekent loont het ook altijd om deze even te googlen, maar nu hoeft dat nog niet.
 		\item
 			In plaats van twee dingen op \'e\'en regel weg te schrijven, kunnen we ook twee regels gebruiken. Verander je code naar de twee regels \icode{cout << "How are you?";} en \icode{cout << endl;}. Je ziet dat er nog steeds het zelfde gebeurt als je het programma uitvoert.
 		\item
 			Zorg nu dat het programma twee keer "How are you?" zegt, op twee regels onder elkaar.
 		\item
-			\textbf{Kan je er ook voor zorgen dat er op \'e\'en regel twee keer "How are you" komt te staan.} 
+			Kan je er ook voor zorgen dat er op \'e\'en regel twee keer "How are you" komt te staan.
 		\item
 			Print nu de lijst getallen van 1 tot en met 5, waarbij elk getal op zijn eigen regel staat.
 		\item
-			We kunnen die getallen ook op \'e\'en regel zetten door steeds \icode{endl} te vervangen door \icode{" "}. \textbf{Probeer dit eens uit.}
+			We kunnen die getallen ook op \'e\'en regel zetten door steeds \icode{endl} te vervangen door \icode{" "}. Probeer dit eens uit.
 		\item
 			Zorg er nu voor dat je in je code maar \'e\'en keer het woord \icode{cout} gebruikt.
 			Zoals je ziet kunnen we in het programma er op \'e\'en regel zowel voor zorgen dat er getallen als tekst naar de console worden geschreven. 
 \end{enumerate}
 
 \subsection{Variabelen}
-Er zijn meerdere soorten variabelen. De belangrijkste zijn getallen en strings. Een getal kan of geheel zijn, of re\"eel. In het eerste geval gebruiken we een \icode{int}, wat staat voor \emph{integer}. Als een getal niet altijd geheel is, hebben we een \icode{double} nodig. Een double kan elke mogelijke waarde aannemen, dus bijvoorbeeld ook $\pi$. \footnote{\textbf{Kunnen we niet beter een eindig getal nemen?}}\\
-Een \icode{string} is een stuk tekst. In computertaal is dat gewoon een rij van tekens.
+Er zijn meerdere soorten variabelen. De belangrijkste zijn getallen en strings. Een getal kan of geheel zijn, of re\"eel. In het eerste geval gebruiken we een \icode{int}, wat staat voor \emph{integer}. Als een getal niet altijd geheel is, hebben we een \icode{double} nodig. Een double kan elke mogelijke waarde aannemen, dus bijvoorbeeld ook $1.2$ of $\sqrt 2$.\\
+Een \icode{string} is een stuk tekst. In computertaal is dat gewoon een rij van tekens. Verder hebben we nog \icode{bool}s. Dat zijn waarden die waar (\icode{true}) of onwaar (\icode{false}) zijn.
 \code{code/vars.cpp}
 \subsubsection{Opdrachten}
 \begin{enumerate}
@@ -152,19 +165,17 @@ Een \icode{string} is een stuk tekst. In computertaal is dat gewoon een rij van 
 \end{enumerate}
 
 
-\subsection{Console invoer}\footnote{Ik heb nu maar uitvoer-variabelen-invoer gedaan, omdat er op die manier geen vooruit-referenties nodig zijn.}
+\subsection{Console invoer}
 Het is soms ook handig om juist invoer van de gebruiker te lezen. Daarvoor hebben we \icode{cin}, console-in. Hieronder lezen we een getal in, wat we in de variabele \icode{leeftijd} stoppen. De pijltjes staan hier naar rechts, omdat het getal uit de console komt, en in de variabele wordt gestopt. We kunnen ook naar een string lezen in plaats van naar een getal. De syntax is: \\
 \icode{cin >> } \emph{variabele met het type dat je wilt lezen} \icode{;}
 \code{code/cin.cpp}
 \subsubsection{Opdrachten}
 \begin{enumerate}
-	\item \textbf{Print op een nieuwe regel de leeftijd die je over een jaar hebt}, door \icode{leeftijd + 1} te gebruiken in plaats van \icode{leeftijd}.
-		\item
-			In plaats van een \icode{int}, kunnen we \icode{leeftijd} ook een \icode{double} maken, zodat hij niet geheel meer hoeft te zijn. Doe dat, en kijk wat er gebeurt als je bijvoorbeeld $1$, $2.3$, $1234.345$ en $-11234$ invult \textbf{in de console}. Vergelijk dit ook met het geval waarin het nog een integer was. \footnote{\textbf{Waar doel je precies op met de vergelijking?}}
-		\item
-			We kunnen er ook nog een string van maken. Als je de code van de eerste opdracht nog hebt, werkt die hier nog steeds. Wat doet de \icode{+} blijkbaar met tekst als argumenten? \footnote{\textbf{Leuk idee om iets met + te doen voor strings. Het is me echter niet helemaal duidelijk wat de opdracht is die ze moeten uitvoeren?}}
-		\item
-			\footnote{Meer opdrachten nodig? Echt meer kan ik niet bedenken. \textbf{Het is al hartstikke prima!}}
+	\item Print op een nieuwe regel de leeftijd die je over een jaar hebt, door \icode{leeftijd + 1} te gebruiken in plaats van \icode{leeftijd}.
+		Test het programma door het uit te voeren en in de console je leeftijd in te voeren en op enter te drukken.
+	\item
+		Als je nu voor je leeftijd een getal invult dat niet geheel is, zul je zien dat deze naar beneden wordt afgerond. Dat komt doordat we de leeftijd opslaan als \icode{int}, en een integer is altijd geheel.
+		In plaats van een \icode{int}, kunnen we \icode{leeftijd} ook een \icode{double} maken, zodat hij niet geheel meer hoeft te zijn. Doe dat, en kijk wat er gebeurt als je nu bijvoorbeeld $1$, $2.3$, $1234.345$ en $-1234$ invult in de console.
 \end{enumerate}
 
 
@@ -177,7 +188,7 @@ if(conditie){
 	//code wanneer conditie niet waar (false) is;
 }
 \end{lstlisting}
-Hierin is \icode{conditie} een expressie die tot een boolean evalueert, en dus waar of niet waar is. Voorbeelden zijn bijvoorbeeld \icode{if(i == 1)} en \icode{if(i < 10)}, waarbij $i$ een integer is. \footnote{Booleans zijn verder nog niet behandeld. Wil je dat hier voor het eerst uitleggen, of bij variabelen al? Er mist namelijk op het moment nog wel een stukje uitleg.}
+Hierin is \icode{conditie} een expressie die tot een boolean evalueert, en dus waar of onwaar is. Voorbeelden zijn bijvoorbeeld \icode{if(i == 1)} en \icode{if(i < 10)}, waarbij $i$ een integer is. 
 
 Soms hoeven we alleen maar iets te doen als de conditie waar is. In dat geval kunnen we ook den syntax
 \begin{lstlisting}
@@ -187,24 +198,24 @@ if(conditie){
 \end{lstlisting}
 gebruiken.
 
-In het volgende voorbeeld hangt de uitvoer van het programma af van de invoer van de gebruiker. \footnote{\textbf{Heel leuk simpel voorbeeld!}}
+In het volgende voorbeeld hangt de uitvoer van het programma af van de invoer van de gebruiker.
 \code{code/if.cpp}
 
-\subsection{Opdrachten}
+\subsubsection{Opdrachten}
 \begin{enumerate}
 		\item
 		Kan je er voor zorgen dat de twee gevallen uit het voorbeeld verwisseld worden? Dus dat de \emph{true} case nu \icode{"Je bent nog een kind!"} print en de \emph{false} case juist \icode{"Je bent volwassen!"}.
 		\item
-			Print nu ook nog de string \icode{"Je mag nu autorijden!"} wanneer de leeftijd precies 18 jaar is. Hierbij heb je dus geen \icode{else} nodig. \footnote{\textbf{In je vraag staat `emph{ook} nog', maar als ik het goed begrijp wil je dat de dingen van de vorige opdracht niet meer geprint worden?}}
+			Print nu de string \icode{"Je mag nu autorijden!"} wanneer de leeftijd precies 18 jaar is. Hierbij heb je dus geen \icode{else} nodig.
 		\item
 			Bepaal nu of de leeftijd kleiner is dan 18, tussen de 18 en 65 is, of dat hij minstens 65 is. In het laatste geval moet je \icode{"U bent gepensioneerd!"} schrijven naar de console.
 		\item
-			Voor herhaalde \icode{if}-statements is er de syntax \footnote{\textbf{Gave toevoeging!}}
+			Voor herhaalde \icode{if}-statements is er de syntax
 \begin{lstlisting}
 if(conditie 1){
 	// code wanneer conditie 1 waar is;
 } else if(conditie 2){
-	// code wanneer conditie 2 waar is;
+	// code wanneer conditie 1 niet waar is, maar 2 wel;
 } else {
 	// code wanneer geen van beiden waar is.
 }
@@ -214,26 +225,26 @@ Gebruik dit nu voor de code van de vorige opdracht.
 
 
 \subsection{For}
-Als je een stukje code vaker dan \'e\'en keer wilt uitvoeren, kan je hem natuurlijk een aantal keer onder elkaar kopi\"eren en plakken. Als het aantal keer dat je iets wilt doen niet vast ligt, is dat niet meer handig\footnote{Merk op dat het nooit verstandig is om hier te kopi\"eren en plakken. Als je iets maar twee keer moet doen, kan dat prima met een for loop}. Daarvoor is de \icode{for}-loop.
-Deze herhaalt iets een bepaald aantal keer. Het kan ook zo zijn dat het aantal keer dat iets \textbf{herhaald} wordt nog niet van tevoren vast ligt. De syntax is 
+Als je een stukje code vaker dan \'e\'en keer wilt uitvoeren, kan je hem natuurlijk een aantal keer onder elkaar kopi\"eren en plakken. Als het aantal keer dat je iets wilt doen niet vast ligt, is dat niet meer handig\footnote{Merk op dat het nooit verstandig is om te kopi\"eren en plakken. Ook als je iets maar twee keer moet doen, kan dat prima met een \icode{for} loop}. Daarvoor is de \icode{for}-loop.
+Deze herhaalt iets een bepaald aantal keer. Het kan ook zo zijn dat het aantal keer dat iets herhaald wordt nog niet van tevoren vast ligt. De syntax is 
 \begin{lstlisting}
 for(initialisatie; conditie; verhoging){
 	//code die herhaald wordt
 }
 \end{lstlisting}
-\textbf{De \icode{for}-loop heeft een teller-variabele die voor iedere iteratie (herhaling) van de loop wordt opgehoogd. We zullen stap voor stap bekijken hoe een \icode{for}-loop werkt:}
+De \icode{for}-loop heeft een teller-variabele die voor iedere iteratie (herhaling) van de loop wordt opgehoogd. We zullen stap voor stap bekijken hoe een \icode{for}-loop werkt:
 
 \begin{enumerate}
-	\item De initialisatie wordt uitgevoerd. Hierbij krijgt de teller zijn beginwaarde, bijvoorbeeld \icode{int i = 0;}. \footnote{\textbf{initialisatie en declaratie zou ik bij variabelen al uitleggen, dan kennen ze dat hier al.}} De initialisatie wordt alleen voor de allereerste iteratie uitgevoerd. 
+	\item De initialisatie wordt uitgevoerd. Hierbij krijgt de teller zijn beginwaarde, bijvoorbeeld \icode{int i = 0;}. De initialisatie wordt alleen voor de allereerste iteratie uitgevoerd. 
 	\item Er wordt gecontroleerd of de conditie \emph{true} is (meestal hangt de conditie van de teller af). Dit werkt op dezelfde manier als de conditie bij het \icode{if}-statement, dus de conditie is een boolean waarde die bepaald hoe lang de \icode{for}-loop doorgaat. De conditie is vaak iets als \icode{i < 10}. Als de conditie \emph{true} is, gaat het programma verder met de stappen hieronder. Als de conditie \emph{false} is wordt de for-loop afgebroken. 
 	\item De code die tussen de accolades staat wordt uitgevoerd. Dit kan van alles zijn. 
-	\item De teller wordt opgehoogd. Vaak wordt de teller met \'e\'en opgehoogd, door middel van \icode{i++}, wat equivalent is met \icode{i+=1} en \icode{i=i+1}. Je kunt de teller bijvoorbeeld ook met 2 verlagen, wat je kunt doen met \icode{i-=2} of \icode{i=i-2}. \footnote{\textbf{Belangrijk om deze drie ook al te behandelen bij variabelen denk ik.}}
+	\item De teller wordt opgehoogd. Vaak wordt de teller met \'e\'en opgehoogd, door middel van \icode{i++}, wat equivalent is met \icode{i+=1} en \icode{i=i+1}. Je kunt de teller bijvoorbeeld ook met 2 verlagen, wat je kunt doen met \icode{i-=2} of \icode{i=i-2}.
 	\item Stap 2 t/m 4 worden herhaald net zo lang totdat bij een bepaalde iteratie de conditie bij 2 niet meer \emph{true} is. De for-loop is dan ten einde. 
 \end{enumerate}
 
 Als je de kleine voorbeelden die hierboven stonden combineert dan zie je dat: \icode{i} begint op 0 en wordt net zo lang met 1 verhoogd totdat hij niet langer kleiner is dan 10. Voor al deze iteraties wordt de code tussen de accolades uitgevoerd, in dit geval gebeurt dat dus 10 keer. 
 
-\textbf{Hieronder staat de zelfde uitleg nog een keer, maar dan in code in plaats van in woorden.} In het algemeen is de code van een \icode{for}-loop equivalent aan
+Hieronder staat de zelfde uitleg nog een keer, maar dan in code in plaats van in woorden. In het algemeen is de code van een \icode{for}-loop equivalent aan
 \begin{lstlisting}
 initialisatie;
 if(conditie){
@@ -254,8 +265,7 @@ if(conditie){
 \end{lstlisting}
 Hier is een voorbeeld van het gebruik van \icode{for}.
 \code{code/for.cpp}
-Als je dit intikt en uitvoert, zie je dat er eerst drie keer 'hoera' wordt geschreven, en daarna de getallen van $0$ tot en met $10$. De werking van een \icode{for}-loop is als volgt:\\
-
+Als je dit intikt en uitvoert, zie je dat er eerst drie keer 'hoera' wordt geschreven, en daarna de getallen van $0$ tot en met $10$.
 
 \subsubsection{Opdrachten}
 \begin{enumerate}

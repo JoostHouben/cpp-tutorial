@@ -10,10 +10,11 @@ using namespace std;
  * Het programma begint in de `main`.
  * Dit is de functie die wordt aangeroepen
  * zodra je programmma begint.
- * De main moet altijd een geheeltallige waarde
- * retouneren, en meestal 0.
- * Elk getal ongelijk aan 0 betekent dat er een error is geweest.
- */
+
+(De sterretjes aan het begin van de regel
+zijn hier niet per se nodig)
+*/
+
 int main(){
-	return 0; // of deze weglaten?????
+	// de code komt hier
 }

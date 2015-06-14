@@ -10,6 +10,4 @@ int main(){
 	} else {
 		cout << "Je bent nog een kind!" << endl;
 	}
-
-	return 0;
 }
