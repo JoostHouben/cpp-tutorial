@@ -1,5 +1,5 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[dutch]{babel}
@@ -65,10 +65,13 @@ Ragnar Groot Koerkamp
 \maketitle
 
 \tableofcontents
+
+\clearpage
 \subsection{Overzicht}
 In deze cursus leer je de basis van programmeren in \cpp. We beginnen we bij het opstarten van een project in een tekstverwerker. Daarna gaan we in op de structuur van een programma en wat de regels zijn bij het schrijven ervan. Vervolgens wordt aan de hand van veel voorbeelden en simpele opdrachten de basis van \cpp zelf	 uitgelegd. We gaan hierbij bijvoorbeeld in op variabelen, \icode{if}-statements en \icode{for}-loops.
 
 Na afloop van deze cursus zou je van onderstaande code moeten kunnen achterhalen wat het doet en hoe het werkt:
+
 \code{code/eind.cpp}
 \subsection{Compilers}
 Een computer heeft heel veel rekenkracht en hier kunnen zeker natuurkundigen nuttig gebruik van maken. Met behulp van een computer kunnen we bijvoorbeeld numerieke oplossingen vinden van vergelijkingen die geen analytische oplossing hebben. Maar om de computer iets voor ons te laten uitrekenen, zullen we hem moeten vertellen wat hij precies moet doen. We moeten dus tegen de computer kunnen praten, en dit praten gebeurt in een programmeertaal. Er zijn verschillende programmeertalen zoals C, \cpp, Java en Python, en een programma schrijven we in zo'n programmeertaal. De computer kan echter deze programmeertalen nog niet direct begrijpen, daarvoor is nog een extra tussenstap nodig. De broncode, geschreven door ons in een programmeertaal, moet worden vertaald naar machinecode. Deze machinecode bevat de opdrachten die de processor moet uitvoeren. Een compiler vertaalt de programmeertaal voor ons naar die machinecode. Voor iedere programmeertaal bestaan er compilers die die programmeertaal naar machinecode vertalen.
@@ -118,7 +121,7 @@ De syntax van een programmeertaal omvat de spellingsregels/taalregels van de pro
 
 Hierbij staat de tekst `string, cijfer, of nog iets anders' schuingedrukt, omdat je deze niet letterlijk zo in je programma mag zetten. Hier moet je bij het schrijven van je programma nog een specifieke invulling aan geven. Het is soms handig om meer dan \'e\'en ding tegelijk te kunnen schrijven. Dat kan met behulp van:\\
 
-\icode{cout << } \emph{string, cijfer, of nog iets anders} \icode{ << } \emph{andere string, cijfer, etc} \icode{ << } .. \icode{;}\\
+\icode{cout << } \emph{string, cijfer, of nog iets anders} \icode{ << } \emph{andere string, cijfer, etc} \icode{ << } .. \icode{;}
 
 \code{code/cout.cpp}
 
@@ -155,7 +158,8 @@ Er zijn meerdere soorten variabelen. De belangrijkste zijn getallen en strings. 
 Een \icode{string} is een stuk tekst. In computertaal is dat gewoon een rij van tekens. Verder hebben we nog \icode{bool}s. Dat zijn waarden die waar (\icode{true}) of onwaar (\icode{false}) zijn.
 
 Zorg dat je alle operaties in de code hieronder snapt, en controleer of de uitvoer klopt met wat je verwacht.\footnote{Deze code is ook online beschikbaar op \url{http://github.com/ragnargrootkoerkamp/cpp-tutorial} in \mono{code/vars.cpp}}
-Let er op dat we nu ook de pakketjes \icode{<string>} en \icode{cmath} nodig hebben voor de strings en voor het worteltrekken en machtsverheffen.
+Let er op dat we nu ook de pakketjes \icode{<string>} en \icode{<cmath>} nodig hebben voor de strings en voor het worteltrekken en machtsverheffen.
+
 \code{code/vars.cpp}
 
 
@@ -165,6 +169,7 @@ Het is soms ook handig om juist invoer van de gebruiker te lezen. Daarvoor hebbe
 \icode{cin >> } \emph{variabele met het type dat je wilt lezen} \icode{;}\\
 
 Bijvoorbeeld:
+
 \code{code/cin.cpp}
 \subsubsection{Opdrachten}
 \begin{enumerate}
@@ -196,6 +201,7 @@ if(conditie){
 gebruiken.
 
 In het volgende voorbeeld hangt de uitvoer van het programma af van de invoer van de gebruiker.
+
 \code{code/if.cpp}
 
 \subsubsection{Opdrachten}
@@ -261,7 +267,9 @@ if(conditie){
 }
 \end{lstlisting}
 Hier is een voorbeeld van het gebruik van \icode{for}.
+
 \code{code/for.cpp}
+
 Als je dit intikt en uitvoert, zie je dat er eerst drie keer 'hoera' wordt geschreven, en daarna de getallen van $0$ tot en met $10$.
 
 \subsubsection{Opdrachten}
@@ -270,11 +278,11 @@ Als je dit intikt en uitvoert, zie je dat er eerst drie keer 'hoera' wordt gesch
 		Print nu 5 keer \icode{"hoera"} op een nieuwe regel.
 	\item
 		Schrijf nu alleen de even getallen tot en met 10 op.
-	\item 
-		TODO: MEER OPDRACHTEN
 \end{enumerate}
 
+\clearpage
 \subsection{Arrays [optioneel]}
+
 \code{code/array.cpp}
 
 \subsection{While [optioneel]}
@@ -285,6 +293,7 @@ while(conditie){
 }
 \end{lstlisting}
 In de code hieronder zie je een voorbeeld. We beginnen hier met $n=0$, en vervolgens schrijven we steeds $n^2$ op, net zo lang tot $n^2$ groter wordt dan $1000$.
+
 \code{code/while.cpp}
 
 \clearpage
