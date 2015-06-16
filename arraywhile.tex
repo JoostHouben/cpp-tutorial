@@ -1,0 +1,87 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[dutch]{babel}
+\usepackage{amssymb, amsmath}
+\usepackage{fancyhdr}
+\usepackage{footnote}
+\usepackage{hyperref}
+\usepackage[justification=centering]{caption}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{bm}
+\usepackage{siunitx}
+\usepackage[usenames,dvipsnames]{color}
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\setlength{\parindent}{0pt}
+
+\renewcommand{\thesection}		{\arabic{section}}
+\renewcommand{\thesubsection}	{\arabic{subsection}}
+
+\usepackage{listings}
+\lstset{
+    language=C++,
+    tabsize=4,
+    frame=lines,
+    numbers=left,
+    numberstyle=\color{black}\tiny,
+    numbersep=8pt,
+    breaklines=true,
+    showstringspaces=false,
+    basicstyle=\color{black}\footnotesize\ttfamily,
+	identifierstyle=\color{black},
+	keywordstyle=\bfseries\color{blue}\bfseries,
+	commentstyle=\color{OliveGreen},
+	stringstyle =\color{red},
+}
+
+% \code to include a file
+% \icode to create inline code
+\newcommand{\code}{\lstinputlisting}
+\newcommand{\icode}{\lstinline}
+\newcommand{\mono}{\texttt}
+
+\fancyhead[R]{}
+\fancyfoot[C]{\thepage}
+
+\title{Inleiding programmeren in C++\\
+Arrays en while loops}
+\author{
+FysiCie\\
+i.s.m.\\
+Ragnar Groot Koerkamp
+}
+\date{11 juni 2015}
+ 
+%\renewcommand{\contentsname}{Inhoud}
+
+\newcommand{\cpp}{\mono{C++ }}
+ 
+\begin{document}
+ 
+\maketitle
+
+\tableofcontents
+
+\clearpage
+
+\subsection{Arrays [optioneel]}
+
+\code{code/array.cpp}
+
+\subsection{While [optioneel]}
+Tot slot hebben we nog de \icode{while}-loop. Deze lijkt een beetje op de \icode{for}-loop, maar is toch anders. Bij een \icode{for}-loop weten we meestal van tevoren al hoe vaak we de code willen herhalen. Als we dat niet precies weten, is een \icode{while}-loop handig. We herhalen de code nu net zo lang tot \icode{conditie} onwaar wordt in
+\begin{lstlisting}
+while(conditie){
+	code die herhaald wordt;
+}
+\end{lstlisting}
+In de code hieronder zie je een voorbeeld. We beginnen hier met $n=0$, en vervolgens schrijven we steeds $n^2$ op, net zo lang tot $n^2$ groter wordt dan $1000$.
+
+\code{code/while.cpp}
+
+\end{document}

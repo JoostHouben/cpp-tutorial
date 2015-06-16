@@ -1,7 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 \usepackage[dutch]{babel}
 \usepackage{amssymb, amsmath}
 \usepackage{fancyhdr}
@@ -48,13 +47,13 @@
 \fancyhead[R]{}
 \fancyfoot[C]{\thepage}
 
-\title{Inleiding programmeren natuurkundigen}
+\title{Inleiding programmeren in C++}
 \author{
-Fysicie\\
+FysiCie\\
 i.s.m.\\
 Ragnar Groot Koerkamp
 }
-\date{11 juni 2015}
+\date{18 juni 2015}
  
 %\renewcommand{\contentsname}{Inhoud}
 
@@ -73,6 +72,9 @@ In deze cursus leer je de basis van programmeren in \cpp. We beginnen we bij het
 Na afloop van deze cursus zou je van onderstaande code moeten kunnen achterhalen wat het doet en hoe het werkt:
 
 \code{code/eind.cpp}
+
+Deze pdf en alle gebruikte code zijn beschikbaar op \url{http://github.com/RagnarGrootKoerkamp/cpp-tutorial}. We raden je echt aar om in het begin alle code over te typen uit de pdf, zodat je echt een gevoel krijgt voor waar je mee bezig bent.
+
 \subsection{Compilers}
 Een computer heeft heel veel rekenkracht en hier kunnen zeker natuurkundigen nuttig gebruik van maken. Met behulp van een computer kunnen we bijvoorbeeld numerieke oplossingen vinden van vergelijkingen die geen analytische oplossing hebben. Maar om de computer iets voor ons te laten uitrekenen, zullen we hem moeten vertellen wat hij precies moet doen. We moeten dus tegen de computer kunnen `praten,' en dit praten gebeurt in een programmeertaal. Er zijn verschillende programmeertalen zoals C, \cpp, Java en Python. Een computerprogramma schrijven we in zo'n programmeertaal. De computer kan echter deze programmeertalen nog niet direct begrijpen, daarvoor is nog een extra tussenstap nodig. De broncode, geschreven door ons in een programmeertaal, moet worden vertaald naar machinecode. Deze machinecode bevat de opdrachten die de processor moet uitvoeren. Een compiler vertaalt de programmeertaal naar machinecode. Voor iedere programmeertaal bestaan er compilers die die specifieke programmeertaal naar machinecode vertalen.
 
@@ -96,7 +98,7 @@ Alle functies in <iostream> behoren tot de \cpp-standaard-library. Om ze makkeli
 Let op het gebruik van hoofdletters en kleine letters in de code. \cpp is hoofdlettergevoelig, dus \icode{Int} is niet hezelfde als \icode{int}!
 
 
-\subsubsection{Opdrachten}
+\paragraph{Opdrachten}
 \begin{enumerate}
 	\item
 		Ga naar Cloud9 op \url{http://c9.io/}. Maak een account aan. Als je ingelogd bent, klik je op 'create workspace' en vervolgens weer op 'create workspace'. Kies een leuke naam voor je workspace. Selecteer C/\cpp, de rest kun je laten staan zoals het nu staat. Klik op create en wacht even. (Het duurt even voordat de workspace is gemaakt, ook al spring je direct weer terug naar het dashboard.) Klik links onder 'my projects' op de workspace die je net hebt gecreëerd. Wacht even tot er 'start editing' staat en klik hierop. Ga vervolgens naar 'File' en klik op 'New File'. Sla op met CTRL + S en verander de naam van de file naar \mono{hallo.cpp}. De naam van je programma mag altijd alleen letters en underscores bevatten. De \mono{.cpp} zorgt ervoor dat de compiler weet dat het een \cpp programma is. (De \mono{p}'s staan voor \emph{plus}.)
@@ -124,7 +126,7 @@ Hierbij staat de tekst `string, cijfer, of nog iets anders' schuingedrukt, omdat
 
 \code{code/cout.cpp}
 
-\subsubsection{opdrachten}
+\paragraph{Opdrachten}
 \begin{enumerate}
 		\item
 			Neem het bovenstaande voorbeeld over. Maak eerst van de regel waarop $22$ wordt weggeschreven commentaar, en maak vervolgens van de twee regels voor het wegschrijven van de datum blok-commentaar.
@@ -149,12 +151,222 @@ Hierbij staat de tekst `string, cijfer, of nog iets anders' schuingedrukt, omdat
 Er zijn meerdere soorten variabelen. De belangrijkste zijn getallen en strings. Een getal kan of geheel zijn, of re\"eel. In het eerste geval gebruiken we een \icode{int}, wat staat voor \emph{integer}. Als een getal niet altijd geheel is, hebben we een \icode{double} nodig. Een double kan elke mogelijke waarde aannemen, dus bijvoorbeeld ook $1.2$ of $\sqrt 2$.\\
 Een \icode{string} is een stuk tekst. In computertaal is dat gewoon een rij van tekens. Verder hebben we nog \icode{bool}s. Dat zijn waarden die waar (\icode{true}) of onwaar (\icode{false}) zijn.
 
-Zorg dat je alle operaties in de code hieronder snapt, en controleer of de uitvoer klopt met wat je verwacht.\footnote{Deze code is ook online beschikbaar op \url{http://github.com/ragnargrootkoerkamp/cpp-tutorial} in \mono{code/vars.cpp}}
-Let er op dat we nu ook de pakketjes \icode{<string>} en \icode{<cmath>} nodig hebben voor de strings en voor het worteltrekken en machtsverheffen.
+\subsubsection{Strings}
 
-\code{code/vars.cpp}
+Strings zijn tekstvariabelen. Een tekstvariabele moet altijd tussen aanhalingstekens `` en '' staan. 
+Bijvoorbeeld: 
 
+\begin{lstlisting}
+#include <iostream> 
 
+int main() {
+ string naam = "Piet"; // Deze regel wordt in het volgende stukje uitgelegd! 
+ cout << "Mijn naam is " << naam << endl;
+ cout << "Mijn naam is " << "Piet" << endl; 
+}
+\end{lstlisting}
+
+\paragraph{Opdrachten}
+\begin{itemize} 
+\item 
+Print `Mijn naam is ... ' en vul op de puntjes je eigen naam in. 
+\end{itemize} 
+
+\subsubsection{Declaratie en initializatie}
+Voordat we aan een variabele een waarde kunnen toekennen, moeten we deze \emph{declareren} (Engels: \emph{declaration}). 
+Hierbij moeten we specifiek aangeven van welk datatype (\icode{int}, \icode{double}, \icode{bool}, 
+\icode{string}) een variabele is. Dit datatype staat daarna vast en kan niet meer veranderd worden.
+Het is verplicht om iedere variabele te declareren en dit declareren mag je maar één keer doen. 
+De syntax van een declaratie is als volgt
+
+\icode{datatype naam;} 
+
+Bijvoorbeeld met \icode{int a;} declareer je een variabele genaamd \icode{a} van het datatype 
+\icode{int} (geheel getal). We kunnen met gebruik van de `='-operator een waarde toekennen aan 
+een variabele. Dit heet ook wel de \emph{initialisatie} (Engels: \emph{initialization}).
+Dat gaat als volgt: \icode{a = 2;}. De variabele \icode{a} heeft nu de waarde 2.
+Variabelen kunnen op twee manieren gedeclareerd worden. De variabele kan gedeclareerd worden 
+voordat de variabele voor het eerst een waarde toegekend krijgt of de declaratie en het toekennen 
+van de \emph{eerste} waarde gebeuren tegelijk. 
+\begin{lstlisting}
+#include <iostream> 
+using namespace std; 
+int main(){
+	// Eerst declareren, dan toekenning 
+	int a; 
+	a = 2; 
+	cout << a << endl; 
+	// Declaratie en toekenning tegelijk
+	int b = 3; 
+	cout << b << endl; 
+}
+\end{lstlisting}
+Hoewel een variabele maar één keer gedeclareerd kan worden en het datatype daarna vaststaat, kan 
+wel de waarde van de variabele later in het programma worden aangepast. We kunnen de variabele 
+\icode{a} een nieuwe waarde toekennen op dezelfde manier als waarop hij zijn eerste waarde krijgt. 
+\begin{lstlisting}
+#include <iostream> 
+using namespace std;
+int main() {
+	int a; 
+	a = 2; 
+	cout << "a = " << a << endl; 
+	a = 3; 
+	cout << "a = " << a << endl; // a heeft nu een nieuwe waarde, namelijk 3! 
+}
+\end{lstlisting}
+Voor \icode{double}s werkt dit hetzelfde als voor \icode{int}s behalve dat je bij de declaratie moet 
+aangeven dat het een ‘double’ is in plaats van een ‘int’. 
+\paragraph{Opdrachten}
+\begin{enumerate} 
+\item 
+	Declareer een \icode{double} genaand \icode{pi} en geef hem de waarde $3.1415$. 
+Print de waarde van c vervolgens naar de console. 
+\item 
+	Verander de waarde nu naar $3.14159265$ en print
+nogmaals de waarde van \icode{pi} naar de console. 
+\end{enumerate} 
+
+\subsubsection{Rekenen met \icode{int}s en \icode{double}s}
+
+We kunnen met \icode{int}s en \icode{double}s rekenen door het gebruik van de operatoren + - * /. 
+De + - * operatoren werken precies zoals je zou verwachten. Onderstaand voorbeeld illustreert dit: 
+\begin{lstlisting}
+#include <iostream> 
+using namespace std; 
+int main () {
+	int a = 2; 
+	int b = 3; 
+	cout << "a + b = " << a + b << endl; 
+	cout << "a - b = " << a - b << endl; 
+	cout << "a * b = " << a * b << endl; 
+}
+\end{lstlisting}
+Bij deling werkt dit iets anders. Bij het delen van gehele getallen wordt het resultaat namelijk altijd naar beneden afgerond. 
+Onderstaand voorbeeld illustreert dit: 
+\begin{lstlisting}
+#include <iostream> 
+using namespace std; 
+int main () {
+	int a = 3; 
+	int b = 2; 
+	cout << "a/b = " << a/b << endl; 
+}
+\end{lstlisting}
+Uit de berekening $\frac 32$ komt in dit geval $1$, omdat $1.5$ naar beneden wordt afgerond. Bij een 
+berekening waarbij alleen \icode{int}s worden gebruikt wordt het resultaat van de berekening ook 
+een \icode{int} en bij deze deling wordt 3/2 dus naar beneden afgerond naar de integer 1. Als je minstens 
+één \icode{double} gebruikt bij je berekening wordt het resultaat een \icode{double} en voorkom je 
+die afronding naar beneden (als je dat niet wilt tenminste). 
+\begin{lstlisting}
+#include <iostream> 
+using namespace std; 
+int main () {
+	double c = 2; 
+	double d = 3; 
+	cout << "c/d = " << c/d << endl; 
+}
+\end{lstlisting}
+
+\paragraph{Opdrachten}
+\begin{enumerate}
+\item
+	Een fietsen doet er 10 seconde over om een afstand van 75 meter af te leggen. Print zijn snelheid in meter per seconde naar de console, door deze met een deling uit te rekenen.
+\item 
+	Wat is de snelheid in kilometer per uur? (Weer door het uit te programmeren!)
+\end{enumerate} 
+
+\subsubsection{Meer operatoren}
+Het gebeurt vaak dat je een variabele wilt ophogen met een vaste waarde. Stel je wilt de 
+variabele \icode{a} uit het vorige voorbeeld met 2 ophogen, dan kun je dat als volgt doen: \icode{a = a + 2}. Dit ziet er misschien raar uit, maar wat hier staat (in computertaal) is: ``De nieuwe waarde 
+van a \emph{wordt} gelijk aan de oude waarde van a plus 2’’. Hierin zijn de \icode{a} voor het 
+gelijkheidsteken en de \icode{a} na het gelijkheidsteken dus niet hetzelfde, hoewel het om dezelfde 
+variabele gaat. De \emph{waarde} van \icode{a} voor het gelijkheidsteken betreft de nieuwe waarde 
+van \icode{a} en de \icode{a} na het gelijkheidsteken betreft zijn oude waarde. Een verkorte notatie
+voor deze ophoging is \icode{a += 2}.
+Deze verkorte notatie kan ook gebruikt worden voor -, * en /.
+Specifiek voor als je een variabele wilt ophogen met de waarde 
+1 bestaat er een nog kortere notatie: \icode{a = a + 1} is hetzelfde als \icode{a++}. 
+Analoog hieraan verlaagt \icode{a--} de waarde van \icode{a} met $1$.
+\begin{lstlisting}
+#include <iostream> 
+using namespace std; 
+int main () 
+{
+	int a = 2; 
+	a = a + 3;
+	cout << a << endl; // a wordt met 3 opgehoogd
+	a += 3; // a wordt weer met 3 opgehoogd 
+	cout << a << endl; 
+}
+\end{lstlisting}
+Bovenstaande geldt allemaal ook voor doubles. Wat nu als je een wortel of een sinus wilt gebruiken 
+in je berekening? Daarvoor hebben we het pakketje \icode{<cmath>} nodig dat veel handige functies 
+bevat zoals \icode{sqrt}, \icode{sin}, \icode{cos}, \icode{exp}, \icode{log} etc. Een voorbeeldje: 
+\begin{lstlisting}
+#include <iostream> 
+#include <cmath>
+using namespace std; 
+int main () {
+	double getal = 25; 
+	cout << sqrt(getal) << endl; 
+}
+\end{lstlisting}
+\paragraph{Opdrachten}
+\begin{enumerate} 
+\item 
+Print de sinus van $\pi/2$ (zoek op `cmath C++’ om alle functies te vinden die in dit 
+pakketje zitten, en kies de juiste!). 
+\end{enumerate} 
+\subsubsection{Booleans}
+Een boolean of \icode{bool} is een variabele die slechts twee waarden kan aannemen, \icode{true} of 
+\icode{false} (ook wel aangeduid met respectievelijk 1 en 0). Bij het testen of twee variabelen gelijk 
+zijn aan elkaar is het resultaattype een boolean, ze zijn ofwel gelijk aan elkaar (true) of niet gelijk aan 
+elkaar (false).
+\begin{lstlisting}
+#include <iostream> 
+using namespace std; 
+int main() {
+	bool t = true;
+	bool f = false; 
+	// bools worden geprint als 1 of 0! 
+	cout << "t:\t" << t << endl; // \t zorgt voor een tab
+	cout << "f:\t" << f << endl; 
+}
+\end{lstlisting}
+
+We kunnen testen of twee variabelen gelijk zijn aan elkaar met een dubbel gelijkheidsteken (\icode{==}). 
+\begin{lstlisting}
+#include <iostream> 
+using namespace std;
+int main () {
+	cout << (2 == 2) << endl; 
+	double x = 3.2; 
+	double y = 4.5; 
+	cout << (x == y) << endl; 
+}
+\end{lstlisting}
+Naast de logische operator \icode{==} voor het testen van gelijkheid bestaan ook de operator \icode{!} die staat voor 
+logische negatie. Dat betekent dat \icode{!false} gelijk is aan \icode{true}, en dat \icode{!true} weer \icode{false} wordt.
+Met \icode{!=} kun je testen of twee dingen \emph{niet} gelijk zijn aan elkaar. 
+\begin{lstlisting}
+#include <iostream> 
+using namespace std; 
+int main() {
+	double t = true; 
+	cout << !t << endl; // dit geeft dus false (0) 
+	double x = 3.2; 
+	double y = 4.5; 
+	cout << (x != y) << endl; // dit gaf net false, nu geeft het true (1)! 
+}
+\end{lstlisting}
+\paragraph{Opdrachten} 
+\begin{enumerate}
+\item 
+Test of de sinus van $\pi/2$ en de cosinus van $\pi/2$ gelijk zijn aan elkaar.
+\item
+Test ook of de sinus van $\pi/4$ en de cosinus van $\pi/4$ gelijk zijn aan elkaar.
+\end{enumerate} 
 \subsection{Console invoer}
 Het is soms ook handig om juist invoer van de gebruiker te lezen. Daarvoor hebben we \icode{cin}, console-in. Hieronder lezen we een getal in dat we in de variabele \icode{leeftijd} stoppen. De pijltjes staan hier naar rechts, omdat het getal uit de console komt en in de variabele wordt gestopt. We kunnen ook naar een string lezen in plaats van naar een getal. De syntax is: \\
 
@@ -163,7 +375,7 @@ Het is soms ook handig om juist invoer van de gebruiker te lezen. Daarvoor hebbe
 Bijvoorbeeld:
 
 \code{code/cin.cpp}
-\subsubsection{Opdrachten}
+\paragraph{Opdrachten}
 \begin{enumerate}
 	\item Print op een nieuwe regel de leeftijd die je over een jaar hebt, door \icode{leeftijd + 1} te gebruiken in plaats van \icode{leeftijd}.
 		Test het programma door het uit te voeren en in de console je leeftijd in te voeren en op enter te drukken.
@@ -175,8 +387,9 @@ Bijvoorbeeld:
 
 \subsection{If}
 Tot nu toe lag het altijd precies vast welke code werd uitgevoerd en hoe vaak dat gebeurde. Het is ook mogelijk om iets alleen uit te voeren als aan een bepaalde voorwaarde is voldaan. Daarvoor gebruiken we het \icode{if}-statement. De syntax is
+\lstset{moredelim=[is][\itshape]{[}{]}}
 \begin{lstlisting}
-if(conditie){
+if([conditie]){
 	//code wanneer conditie waar (true) is;
 } else {
 	//code wanneer conditie niet waar (false) is;
@@ -186,7 +399,7 @@ Hierin is \icode{conditie} een expressie die tot een boolean evalueert, en dus w
 
 Soms hoeven we alleen maar iets te doen als de conditie waar is. In dat geval kunnen we ook de syntax
 \begin{lstlisting}
-if(conditie){
+if([conditie]){
 	// code wanneer de conditie waar is;
 }
 \end{lstlisting}
@@ -196,7 +409,7 @@ In het volgende voorbeeld hangt de uitvoer van het programma af van de invoer va
 
 \code{code/if.cpp}
 
-\subsubsection{Opdrachten}
+\paragraph{Opdrachten}
 \begin{enumerate}
 		\item
 		Kan je er voor zorgen dat de twee gevallen uit het voorbeeld verwisseld worden? Dus dat de \emph{true} case nu \icode{"Je bent nog een kind!"} print en de \emph{false} case juist \icode{"Je bent volwassen!"}.
@@ -223,7 +436,7 @@ Gebruik dit nu voor de code van de vorige opdracht.
 Als je een stukje code vaker dan \'e\'en keer wilt uitvoeren, kan je hem natuurlijk een aantal keer onder elkaar kopi\"eren en plakken. Als het aantal keer dat je iets wilt doen niet vast ligt, is dat niet meer handig\footnote{Merk op dat het nooit verstandig is om te kopi\"eren en plakken. Ook als je iets maar twee keer moet doen, kan dat prima met een \icode{for} loop}. Daarvoor is de \icode{for}-loop.
 Deze herhaalt iets een bepaald aantal keer. Het kan ook zo zijn dat het aantal keer dat iets herhaald wordt nog niet van tevoren vast ligt. De syntax is 
 \begin{lstlisting}
-for(initialisatie; conditie; verhoging){
+for([initialisatie]; [conditie]; [verhoging]){
 	//code die herhaald wordt
 }
 \end{lstlisting}
@@ -264,7 +477,7 @@ Hier is een voorbeeld van het gebruik van \icode{for}.
 
 Als je dit intikt en uitvoert, zie je dat er eerst drie keer `hoera' wordt geschreven, en daarna de getallen van $0$ tot en met $10$.
 
-\subsubsection{Opdrachten}
+\paragraph{Opdrachten}
 \begin{enumerate}
 	\item
 		Print nu 5 keer \icode{"hoera"} op een nieuwe regel.
@@ -282,21 +495,6 @@ Als je dit intikt en uitvoert, zie je dat er eerst drie keer `hoera' wordt gesch
 \end{enumerate}
 
 \clearpage
-\subsection{Arrays [optioneel]}
-
-\code{code/array.cpp}
-
-\subsection{While [optioneel]}
-Tot slot hebben we nog de \icode{while}-loop. Deze lijkt een beetje op de \icode{for}-loop, maar is toch anders. Bij een \icode{for}-loop weten we meestal van tevoren al hoe vaak we de code willen herhalen. Als we dat niet precies weten, is een \icode{while}-loop handig. We herhalen de code nu net zo lang tot \icode{conditie} onwaar wordt in
-\begin{lstlisting}
-while(conditie){
-	code die herhaald wordt;
-}
-\end{lstlisting}
-In de code hieronder zie je een voorbeeld. We beginnen hier met $n=0$, en vervolgens schrijven we steeds $n^2$ op, net zo lang tot $n^2$ groter wordt dan $1000$.
-
-\code{code/while.cpp}
-
 \clearpage
 \subsection{Tips: Hoe nu verder?}
 In twee uur kunnen we je helaas niet alles leren wat er te leren valt over \cpp, dus hier komen een aantal tips die je kunt gebruiken als je zelfstandig verder wilt gaan met leren programmeren in \cpp. 
@@ -317,6 +515,7 @@ In twee uur kunnen we je helaas niet alles leren wat er te leren valt over \cpp,
 					\url{http://cplusplus.com}, een andere documentatie, probeer ze allebei, en kijk welke je fijner vindt.
 	\end{enumerate}
 	\item Als je een compiler wilt installeren op een Windows computer dan zijn handige alternatieven: Code::Blocks en Visual Studio Express 2013 for Windows Desktop. Er zijn van Visual Studio ook gratis versies voor studenten\footnote{Deze is verkrijgbaar via DreamSpark: ga naar \url{students.uu.nl/en/free-software} en klik ``Microsoft Software''.}.
+		Voor Linux computers is \emph{g++} de meest gebruikte compiler. Meestal wordt deze standaard meegeïnstalleerd, en hoef je in de terminal alleen maar \mono{g++ programma.cpp} in te tikken. De uitvoer heet dan \mono{a.out}.
 	\item Als je twijfelt of je berekeningen goed gaan kan het handig zijn om als tussenstappen de waarde van een variabele te printen met \icode{cout}. Er is ook nog \icode{cerr}, wat speciaal gemaakt is voor errors, maar verder op precies dezelfde manier gebruikt wordt.
 	\item Als het je leuk lijkt om een programmeervak te gaan volgen, kun je eens naar deze vakken gaan kijken: bij natuurkunde `Numerieke Methoden' (C en Mathematica), bij wiskunde `Programmeren in de wiskunde' (Python) en bij informatica `Imperatief programmeren' (C\#, eerstejaarsvak, dus goed te doen voor natuurkundigen ook!). Geen van deze vakken wordt in \cpp gegeven, maar ze worden wel in soortgelijke talen gegeven. Als je eenmaal in een taal kunt programmeren is het heel makkelijk om over te stappen naar een andere taal, dus ook deze vakken kunnen je uiteindelijk zeker helpen om beter te worden in \cpp. 
 	\item We hebben express te veel opdrachten gemaakt voor vandaag, dus niet getreurd, je kunt thuis gewoon verder gaan met oefenen! Daarnaast zijn er op het internet ook heel veel beginnersopdrachten in \cpp te vinden. Kijk bijvoorbeeld eenss op: \url{http://www.worldbestlearningcenter.com/index_files/cpp-tutorial-variables_datatypes_exercises.htm}.
