@@ -131,6 +131,18 @@ Hierbij staat de tekst `string, cijfer, of nog iets anders' schuingedrukt, omdat
 		\item
 			Neem het bovenstaande voorbeeld over. Maak eerst van de regel waarop $22$ wordt weggeschreven commentaar, en maak vervolgens van de twee regels voor het wegschrijven van de datum blok-commentaar.
 		\item
+			Haal nu de \texttt{;} aan het einde van regel 7 weg. Als je het programma probeert uit te voeren krijg je nu een foutmelding\footnote{Na het printen van de foutmelding voert cloud9 automatisch de laatste goede versie van het programma uit, negeer dit voor nu maar even.}. Het is waarschijnlijk iets in de trant van:
+			\begin{verbatim}
+/home/ubuntu/workspace/hallo.cpp: In function ‘int main()’:                                                                                                      
+/home/ubuntu/workspace/hallo.cpp:16:1: error: expected ‘;’ before ‘}’ token                                                                                      
+}                                                                                                                                                               
+^
+			\end{verbatim}
+			De compiler geeft hier aan dat er ergens een punt-komma mist. Op de eerste regel van de foutmelding zegt de compiler dat de fout in de functie \texttt{main} zit. Op de tweede regel zegt de compiler dat hij op regel 16, bij het eerste teken, een fout tegenkomt. De fout is dat er voor de accolade ergens nog een puntkomma zou moeten komen. De laatste twee regels geven een soort van visuele weergave van waar de fout zit. \\
+			Waarom komt de foutmelding niet bij regel 7? \\
+			Probeer de foutmelding op te lossen door iets neer te zetten op regel 15. \\
+			Haal nu de laatste \texttt{<} weg van regel 7 (ééntje maar). Je krijgt nu een \emph{veel} langere foutmelding, maar de belangrijkste informatie staat helemaal bovenaan. Los de fout weer op en ga verder met de volgende opdracht.
+		\item
 			Schrijf nu alleen de tekst ``How are you?'' naar de console in plaats van ``Mijn leeftijd is''.
 		\item
 			In plaats van twee dingen op \'e\'en regel weg te schrijven, kunnen we ook twee regels gebruiken. Verander je code naar de twee regels \icode{cout << ``How are you?'';} en \icode{cout << endl;}. Je ziet dat er nog steeds het zelfde gebeurt als je het programma uitvoert.
