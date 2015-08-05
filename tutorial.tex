@@ -381,12 +381,31 @@ int main() {
 	cout << (x != y) << endl; // dit gaf net false, nu geeft het true (1)! 
 }
 \end{lstlisting}
+
+\subsubsection{Eindige precisie}
+Naast \icode{int} en \icode{double} zijn er nog elf andere numerieke variabelen in \icode{C++}. Van de dertien numerieke datatypes in totaal zijn er tien voor gehele getallen en drie kunnen er gebruikt worden om ook re\"ele getallen in op te slaan. De datatypes verschillen allemaal in grootte. Voor de tien datatypes waarin integers worden opgeslagen betekent een groter datatype dat je er grotere getallen in kunt opslaan. Voor de drie datatypes waarin re\"ele getallen worden opgeslagen betekent een grotere variabele dat er meer significante cijfers in kunnen worden opgeslagen. In een variabele van een groter datatype kunnen dus meer significante cijfers worden opgeslagen, wat handig is voor hele nauwkeurige berekeningen. De tabel hieronder laat alle numerieke datatypes van \icode{C++} zien. Hierin staan maar vijf datatypes voor gehele getallen. Deze zijn allemaal \emph{signed}, wat betekent dat ze zowel positieve als negatieve getallen kunnen bevatten. De andere vijf datatypes zijn de \emph{unsigned} varianten hiervan, die alleen positieve getallen kunnen bevatten. \\ 
+\\ 
+\begin{tabular}{l l l}
+& \textbf{Datatype} & \textbf{Grootte/precisie} \\ 
+\hline 
+Gehele getallen & signed char & Minstens 8 bits \\ 
+& short int & Minstens 16 bits \\ 
+& int & Minstens 16 bits \\ 
+& long int & Minstens 32 bits \\ 
+& long long int & Minstens 64 bits \\ 
+Re\"ele getallen & float & - \\ 
+& double & Precisie niet kleiner dan float \\ 
+& long double & Precisie niet kleiner dan double \\ 
+\end{tabular} \\ 
+\\ 
+De grootte van datatypes wordt aangegeven met \emph{bits}. Zoals je ziet is de grootte van de datatypes in \icode{C++} niet vast. Dit geeft de taal veel flexibiliteit om goed te werken op allerlei platformen. Wel is het standaard zo dat als je de tabel van boven naar beneden leest de datatypes voor zowel gehele getallen als re\"ele getallen in oplopende grootte of nauwkeurigheid staan. Om je een idee te geven van de precisie en nauwkeurigheid: de grootste waarde die een unsigned $n$-bit integer kan aannemen is $2^n-1$, dus in een \icode{int} kan altijd minimaal de waarde $2^{16} - 1 = 65535$ worden opgeslagen. Voor re\"ele getallen kunnen in een 64-bits variabele vijftien significante cijfers worden opgeslagen. In de praktijk zul je voornamelijk \icode{int}s en \icode{double}s gebruiken en slechts naar andere datatypes gaan kijken als de grootte of de nauwkeurigheid van \icode{int}s en \icode{double}s niet toereikend is. Het is echter wel goed om te weten dat alle variabelen een eindige grootte en nauwkeurigheid hebben. 
+
 \paragraph{Opdrachten} 
 \begin{enumerate}
 \item 
-Test of de sinus van $\pi/2$ en de cosinus van $\pi/2$ gelijk zijn aan elkaar.
+Bereken het verschil van de sinus van $\frac{\pi}{2}$ en de cosinus van $\frac{\pi}{2}$.
 \item
-Test ook of de sinus van $\pi/4$ en de cosinus van $\pi/4$ gelijk zijn aan elkaar.
+Klopt het antwoord van de vorige vraag? Zo niet, waar wordt het verschil door veroorzaakt? 
 \end{enumerate} 
 \subsection{Console invoer}
 Het is soms ook handig om juist invoer van de gebruiker te lezen. Daarvoor hebben we \icode{cin}, console-in. Hieronder lezen we een getal in dat we in de variabele \icode{leeftijd} stoppen. De pijltjes staan hier naar rechts, omdat het getal uit de console komt en in de variabele wordt gestopt. We kunnen ook naar een string lezen in plaats van naar een getal. De syntax is: \\
